@@ -1,2 +1,4 @@
-﻿  PT_CPP_Matrices.cpp
-  PT_CPP_Matrices.vcxproj -> C:\Users\Administrateur\Documents\GitHub\ProjetTutoreCppS6PolytechToursMatrices\PT_CPP_Matrices\Debug\PT_CPP_Matrices.exe
+﻿  CMatrice.cpp
+c:\users\administrateur\documents\github\projettutorecpps6polytechtoursmatrices\pt_cpp_matrices\pt_cpp_matrices\cmatrice.h(12): error C2652: 'CMatrice<MTYPE>' : constructeur de copie non conforme : le premier paramètre ne doit pas être 'CMatrice<MTYPE>'
+  c:\users\administrateur\documents\github\projettutorecpps6polytechtoursmatrices\pt_cpp_matrices\pt_cpp_matrices\cmatrice.h(18): note: voir la référence à l'instanciation de classe modèle 'CMatrice<MTYPE>' en cours de compilation
+c:\users\administrateur\documents\github\projettutorecpps6polytechtoursmatrices\pt_cpp_matrices\pt_cpp_matrices\cmatrice.cpp(3): warning C4812: style de déclaration obsolète : utilisez 'CMatrice<MTYPE>::CMatrice' à la place

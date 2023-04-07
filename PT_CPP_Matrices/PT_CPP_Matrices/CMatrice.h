@@ -9,7 +9,12 @@ template<class MTYPE> class CMatrice
 		MTYPE** pMATMatrice;
 	public:
 		CMatrice<MTYPE>();
-		CMatrice<MTYPE>(CMatrice<MTYPE>);
+		CMatrice<MTYPE>(CMatrice<MTYPE> MATParam);
+		CMatrice<MTYPE>(unsigned int uiNbLignes, unsigned int uiNbColonnes);
+		~CMatrice<MTYPE>();
+
+		int MATLireNbLignes();
+
 };
 
 #endif 

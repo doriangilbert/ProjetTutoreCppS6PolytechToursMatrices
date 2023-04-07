@@ -155,6 +155,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CMatrice.cpp" />
     <ClCompile Include="PT_CPP_Matrices.cpp" />
     <ClCompile Include="CException.cpp" />
   </ItemGroup>

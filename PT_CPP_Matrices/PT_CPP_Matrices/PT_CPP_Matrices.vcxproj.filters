@@ -21,6 +21,9 @@
     <ClCompile Include="CException.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
+    <ClCompile Include="CMatrice.cpp">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CException.h">
