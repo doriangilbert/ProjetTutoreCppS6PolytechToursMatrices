@@ -156,6 +156,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="PT_CPP_Matrices.cpp" />
+    <ClCompile Include="CException.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CException.h" />
+    <ClInclude Include="CMatrice.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
