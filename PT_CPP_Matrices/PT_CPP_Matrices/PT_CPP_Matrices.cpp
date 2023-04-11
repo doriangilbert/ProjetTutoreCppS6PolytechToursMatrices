@@ -3,9 +3,17 @@
 
 #include <iostream>
 
+#include "CMatrice.h"
+
+using namespace std;
+
 int main()
 {
     std::cout << "Hello World!\n"; 
+    CMatrice<int> M1(3,4);
+    cout << M1.MATLireNbLignes() << "\n";
+    cout << M1.MATLireNbColonnes() << "\n";
+
 }
 
 // Exécuter le programme : Ctrl+F5 ou menu Déboguer > Exécuter sans débogage
