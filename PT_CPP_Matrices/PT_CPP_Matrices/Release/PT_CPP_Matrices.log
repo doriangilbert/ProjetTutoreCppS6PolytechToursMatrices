@@ -1,5 +1,24 @@
-﻿  PT_CPP_Matrices.cpp
+﻿  CMatrice.cpp
+c:\users\administrateur\documents\github\projettutorecpps6polytechtoursmatrices\pt_cpp_matrices\pt_cpp_matrices\cmatrice.cpp(6): warning C4812: style de déclaration obsolète : utilisez 'CMatrice<MTYPE>::CMatrice' à la place
+c:\users\administrateur\documents\github\projettutorecpps6polytechtoursmatrices\pt_cpp_matrices\pt_cpp_matrices\cmatrice.cpp(13): warning C4812: style de déclaration obsolète : utilisez 'CMatrice<MTYPE>::CMatrice' à la place
+c:\users\administrateur\documents\github\projettutorecpps6polytechtoursmatrices\pt_cpp_matrices\pt_cpp_matrices\cmatrice.cpp(30): warning C4812: style de déclaration obsolète : utilisez 'CMatrice<MTYPE>::CMatrice' à la place
+  PT_CPP_Matrices.cpp
+c:\users\administrateur\documents\github\projettutorecpps6polytechtoursmatrices\pt_cpp_matrices\pt_cpp_matrices\cmatrice.h(3): warning C4005: 'NULL' : redéfinition de macro
+  c:\program files (x86)\microsoft visual studio\2017\professional\vc\tools\msvc\14.16.27023\include\vcruntime.h(220): note: voir la définition précédente de 'NULL'
+c:\users\administrateur\documents\github\projettutorecpps6polytechtoursmatrices\pt_cpp_matrices\pt_cpp_matrices\cmatrice.cpp(6): warning C4812: style de déclaration obsolète : utilisez 'CMatrice<MTYPE>::CMatrice' à la place
+c:\users\administrateur\documents\github\projettutorecpps6polytechtoursmatrices\pt_cpp_matrices\pt_cpp_matrices\cmatrice.cpp(13): warning C4812: style de déclaration obsolète : utilisez 'CMatrice<MTYPE>::CMatrice' à la place
+c:\users\administrateur\documents\github\projettutorecpps6polytechtoursmatrices\pt_cpp_matrices\pt_cpp_matrices\cmatrice.cpp(30): warning C4812: style de déclaration obsolète : utilisez 'CMatrice<MTYPE>::CMatrice' à la place
+c:\users\administrateur\documents\github\projettutorecpps6polytechtoursmatrices\pt_cpp_matrices\pt_cpp_matrices\cmatrice.cpp(30): warning C4812: style de déclaration obsolète : utilisez 'CMatrice<int>::CMatrice' à la place
+  c:\users\administrateur\documents\github\projettutorecpps6polytechtoursmatrices\pt_cpp_matrices\pt_cpp_matrices\cmatrice.cpp(31): note: pendant la compilation de la fonction membre '<Inconnu>' (classe <Inconnu>)
+  c:\users\administrateur\documents\github\projettutorecpps6polytechtoursmatrices\pt_cpp_matrices\pt_cpp_matrices\pt_cpp_matrices.cpp(13): note: voir la référence à l'instanciation de la fonction modèle 'CMatrice<int>::CMatrice(unsigned int,unsigned int)' en cours de compilation
+  c:\users\administrateur\documents\github\projettutorecpps6polytechtoursmatrices\pt_cpp_matrices\pt_cpp_matrices\pt_cpp_matrices.cpp(13): note: voir la référence à l'instanciation de classe modèle 'CMatrice<int>' en cours de compilation
+c:\users\administrateur\documents\github\projettutorecpps6polytechtoursmatrices\pt_cpp_matrices\pt_cpp_matrices\cmatrice.cpp(13): warning C4812: style de déclaration obsolète : utilisez 'CMatrice<int>::CMatrice' à la place
+  c:\users\administrateur\documents\github\projettutorecpps6polytechtoursmatrices\pt_cpp_matrices\pt_cpp_matrices\cmatrice.cpp(14): note: pendant la compilation de la fonction membre '<Inconnu>' (classe <Inconnu>)
+  c:\users\administrateur\documents\github\projettutorecpps6polytechtoursmatrices\pt_cpp_matrices\pt_cpp_matrices\pt_cpp_matrices.cpp(20): note: voir la référence à l'instanciation de la fonction modèle 'CMatrice<int>::CMatrice(CMatrice<int> &)' en cours de compilation
+  CException.cpp
   Génération de code en cours
-  All 10 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  11 of 18 functions (61.1%) were compiled, the rest were copied from previous compilation.
+    8 functions were new in current compilation
+    2 functions had inline decision re-evaluated but remain unchanged
   Fin de la génération du code
   PT_CPP_Matrices.vcxproj -> C:\Users\Administrateur\Documents\GitHub\ProjetTutoreCppS6PolytechToursMatrices\PT_CPP_Matrices\Release\PT_CPP_Matrices.exe

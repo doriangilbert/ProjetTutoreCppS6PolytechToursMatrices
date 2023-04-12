@@ -1,5 +1,6 @@
 #ifndef CMatrice_h
 #define CMatrice_h
+#define NULL 0;
 
 template<class MTYPE> class CMatrice
 {
@@ -18,6 +19,10 @@ template<class MTYPE> class CMatrice
 		int MATLireNbColonnes();
 		MTYPE MATLireElement(unsigned int uiIndiceLigne, unsigned int uiIndiceColonne);
 		void MATModifierElement(unsigned int uiIndiceLigne, unsigned int uiIndiceColonne, MTYPE valeur);
+		CMatrice<MTYPE>& operator=(CMatrice<MTYPE> &MATParam);
+		CMatrice<MTYPE>& operator*(int iParam);
+
+
 };
 
 #include "CMatrice.cpp"

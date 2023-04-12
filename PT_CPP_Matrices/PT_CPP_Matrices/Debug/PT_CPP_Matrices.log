@@ -1,15 +1,2 @@
 ﻿  CMatrice.cpp
-d:\users\dodog\documents\projets visual studio\projettutorecpps6polytechtoursmatrices\pt_cpp_matrices\pt_cpp_matrices\cmatrice.cpp(6): warning C4812: style de déclaration obsolète : utilisez 'CMatrice<MTYPE>::CMatrice' à la place
-d:\users\dodog\documents\projets visual studio\projettutorecpps6polytechtoursmatrices\pt_cpp_matrices\pt_cpp_matrices\cmatrice.cpp(11): warning C4812: style de déclaration obsolète : utilisez 'CMatrice<MTYPE>::CMatrice' à la place
-d:\users\dodog\documents\projets visual studio\projettutorecpps6polytechtoursmatrices\pt_cpp_matrices\pt_cpp_matrices\cmatrice.cpp(16): warning C4812: style de déclaration obsolète : utilisez 'CMatrice<MTYPE>::CMatrice' à la place
-  PT_CPP_Matrices.cpp
-d:\users\dodog\documents\projets visual studio\projettutorecpps6polytechtoursmatrices\pt_cpp_matrices\pt_cpp_matrices\cmatrice.cpp(6): warning C4812: style de déclaration obsolète : utilisez 'CMatrice<MTYPE>::CMatrice' à la place
-d:\users\dodog\documents\projets visual studio\projettutorecpps6polytechtoursmatrices\pt_cpp_matrices\pt_cpp_matrices\cmatrice.cpp(11): warning C4812: style de déclaration obsolète : utilisez 'CMatrice<MTYPE>::CMatrice' à la place
-d:\users\dodog\documents\projets visual studio\projettutorecpps6polytechtoursmatrices\pt_cpp_matrices\pt_cpp_matrices\cmatrice.cpp(16): warning C4812: style de déclaration obsolète : utilisez 'CMatrice<MTYPE>::CMatrice' à la place
-d:\users\dodog\documents\projets visual studio\projettutorecpps6polytechtoursmatrices\pt_cpp_matrices\pt_cpp_matrices\cmatrice.cpp(16): warning C4812: style de déclaration obsolète : utilisez 'CMatrice<int>::CMatrice' à la place
-  d:\users\dodog\documents\projets visual studio\projettutorecpps6polytechtoursmatrices\pt_cpp_matrices\pt_cpp_matrices\cmatrice.cpp(17): note: pendant la compilation de la fonction membre '<Inconnu>' (classe <Inconnu>)
-  d:\users\dodog\documents\projets visual studio\projettutorecpps6polytechtoursmatrices\pt_cpp_matrices\pt_cpp_matrices\pt_cpp_matrices.cpp(13): note: voir la référence à l'instanciation de la fonction modèle 'CMatrice<int>::CMatrice(unsigned int,unsigned int)' en cours de compilation
-  d:\users\dodog\documents\projets visual studio\projettutorecpps6polytechtoursmatrices\pt_cpp_matrices\pt_cpp_matrices\pt_cpp_matrices.cpp(13): note: voir la référence à l'instanciation de classe modèle 'CMatrice<int>' en cours de compilation
-  CException.cpp
-  Génération de code en cours...
-  PT_CPP_Matrices.vcxproj -> D:\Users\dodog\Documents\Projets Visual Studio\ProjetTutoreCppS6PolytechToursMatrices\PT_CPP_Matrices\Debug\PT_CPP_Matrices.exe
+  PT_CPP_Matrices.vcxproj -> C:\Users\Administrateur\Documents\GitHub\ProjetTutoreCppS6PolytechToursMatrices\PT_CPP_Matrices\Debug\PT_CPP_Matrices.exe

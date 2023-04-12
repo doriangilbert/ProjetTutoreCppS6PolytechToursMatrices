@@ -14,6 +14,18 @@ int main()
     cout << M1.MATLireNbLignes() << "\n";
     cout << M1.MATLireNbColonnes() << "\n";
 
+	CMatrice<int> M2(2, 5);
+	M2.MATModifierElement(1, 3, 5);
+	cout << M2.MATLireElement(1, 3) << "\n";
+	CMatrice<int> M3(M2),M4;
+	cout << M3.MATLireElement(1, 3) << "\n";
+	//marche pas avec les pointeur voila.
+	M4 = M3;
+	cout << M4.MATLireElement(1, 3) << "\n";
+	M3=M3*4;
+	cout << M3.MATLireElement(1, 3) << "\n";
+
+
 }
 
 // Exécuter le programme : Ctrl+F5 ou menu Déboguer > Exécuter sans débogage
