@@ -2,7 +2,6 @@
 #define CMatrice_cpp
 
 #include "CMatrice.h"
-
 //sur les constructeurs mettre MTYPE a un pointeur (char*) ne marche pas.
 template<class MTYPE> CMatrice<MTYPE>::CMatrice()
 {
@@ -108,4 +107,23 @@ template<class MTYPE> CMatrice<MTYPE>& CMatrice<MTYPE>::operator*(int iParam)
 	return *M1;
 };
 
+template<class MTYPE> CMatrice<MTYPE>& CMatrice<MTYPE>::operator/(int iParam)
+{
+	CMatrice<MTYPE>* M1 = new CMatrice<MTYPE>(uiMATNbLignes, uiMATNbColonnes);
+
+	for (unsigned int i = 0; i < uiMATNbLignes; i++) {
+		for (unsigned int j = 0; j < uiMATNbColonnes; j++) {
+			M1->MATModifierElement(i, j, (MTYPE)(pMATMatrice[i][j] / iParam));
+		}
+	}
+	return *M1;
+};
+template<class MTYPE> void CMatrice<MTYPE>::MATAfficher() {
+	for (unsigned int i = 0; i < uiMATNbLignes; i++) {
+		for (unsigned int j = 0; j < uiMATNbColonnes; j++) {
+			cout << pMATMatrice[i][j] << " ";
+		}
+		cout << "\n";
+	}
+}
 #endif

@@ -1,5 +1,7 @@
 #ifndef CMatrice_h
 #define CMatrice_h
+#include <iostream>
+using namespace std;
 
 #define NULL 0;
 

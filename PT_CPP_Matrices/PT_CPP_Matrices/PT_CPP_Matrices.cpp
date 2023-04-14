@@ -24,6 +24,9 @@ int main()
 	cout << M4.MATLireElement(1,3) << "\n";
 	M3 = (M3 * 4);
 	cout << M3.MATLireElement(1, 3) << "\n";
+	M3 = (M3 / 4);
+	cout << M3.MATLireElement(1, 3) << "\n";
+	M3.MATAfficher();
 
 
 }
