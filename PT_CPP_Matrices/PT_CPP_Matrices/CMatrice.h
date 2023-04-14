@@ -1,13 +1,15 @@
 #ifndef CMatrice_h
 #define CMatrice_h
+
 #define NULL 0;
 
+//CMatrice est un patron de classe permettant de manipuler des matrices d'éléments de type quelconque (type générique MTYPE)
 template<class MTYPE> class CMatrice
 {
 	private:
-		unsigned int uiMATNbLignes;
-		unsigned int uiMATNbColonnes;
-		MTYPE** pMATMatrice;
+		unsigned int uiMATNbLignes; //Entier non signé, Nombre de lignes de la matrice
+		unsigned int uiMATNbColonnes; //Entier non signé, Nombre de colonnes de la matrice
+		MTYPE** pMATMatrice; //Tableau 2D de MTYPE (type générique) stockant les éléments de la matrice
 
 	public:
 		/***********************************************************************
@@ -60,7 +62,24 @@ template<class MTYPE> class CMatrice
 		************************************************************/
 		~CMatrice<MTYPE>();
 
+		/*************************************************************************
+		***** MATLireNbLignes : Accesseur direct en lecture de uiMATNbLignes *****
+		**************************************************************************
+		***** Entrée :                                                       *****
+		***** Nécessite :                                                    *****
+		***** Sortie : entier, valeur de l'attribut uiMATNbLignes            *****
+		***** Entraine : MATLireNbLignes() = uiMATNbLignes                   *****
+		*************************************************************************/
 		int MATLireNbLignes();
+
+		/*****************************************************************************
+		***** MATLireNbColonnes : Accesseur direct en lecture de uiMATNbColonnes *****
+		******************************************************************************
+		***** Entrée :                                                           *****
+		***** Nécessite :                                                        *****
+		***** Sortie : entier, valeur de l'attribut uiMATNbColonnes              *****
+		***** Entraine : MATLireNbLignes() = uiMATNbColonnes                     *****
+		*****************************************************************************/
 		int MATLireNbColonnes();
 		MTYPE MATLireElement(unsigned int uiIndiceLigne, unsigned int uiIndiceColonne);
 		void MATModifierElement(unsigned int uiIndiceLigne, unsigned int uiIndiceColonne, MTYPE valeur);
