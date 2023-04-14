@@ -1,5 +1,6 @@
 #ifndef CMatrice_h
 #define CMatrice_h
+
 #include <iostream>
 using namespace std;
 
@@ -83,15 +84,53 @@ template<class MTYPE> class CMatrice
 		***** Entraine : MATLireNbLignes() = uiMATNbColonnes                     *****
 		*****************************************************************************/
 		int MATLireNbColonnes();
+
+		/***************************************************************************************************************************************
+		***** MATLireElement : Fonction permettant de lire un élément à une position donnée (accesseur indirect en lecture de pMATMatrice) *****
+		****************************************************************************************************************************************
+		***** Entrée : - uiIndiceLignes, entier non signé, indice de la ligne de l'élément à lire                                          *****
+		***** - uiIndiceColonnes, entier non signé, indice de la colonne de l'élément à lire                                               *****
+		***** Nécessite : uiIndiceLignes et uiIndiceColonnes entiers positifs correspondants à des lignes et colonnes valides              *****
+		***** Sortie : type générique MTYPE, élément à la ligne uiIndiceLigne et à la colonne uiIndiceColonne                              *****
+		***** Entraine : MATLireElement(uiIndiceLigne, uiIndiceColonne) = élément à la ligne et à la colonne donnés en paramètres          *****
+		***************************************************************************************************************************************/
 		MTYPE MATLireElement(unsigned int uiIndiceLigne, unsigned int uiIndiceColonne);
+
+		/************************************************************************************************************************************************
+		***** MATModifierElement : Fonction permettant de modifier un élément à une position donnée (accesseur indirect en écriture de pMATMatrice) *****
+		*************************************************************************************************************************************************
+		***** Entrée : - uiIndiceLignes, entier non signé, indice de la ligne de l'élément à modifier                                               *****
+		***** - uiIndiceColonnes, entier non signé, indice de la colonne de l'élément à modifier                                                    *****
+		***** - valeur, type générique MTYPE, valeur de l'élément à modifier                                                                        *****
+		***** Nécessite : uiIndiceLignes et uiIndiceColonnes entiers positifs correspondants à des lignes et colonnes valides et valeur est du même *****
+		***** type que la matrice                                                                                                                   *****
+		***** Sortie :                                                                                                                              *****
+		***** Entraine : élément à la ligne uiIndiceLigne et à la colonne uiIndiceColonne = valeur                                                  *****
+		************************************************************************************************************************************************/
 		void MATModifierElement(unsigned int uiIndiceLigne, unsigned int uiIndiceColonne, MTYPE valeur);
+
+		/**/
 		CMatrice<MTYPE>& operator=(CMatrice<MTYPE> &MATParam);
+
+		/**/
 		CMatrice<MTYPE>& operator*(int iParam);
+
+		/**/
 		CMatrice<MTYPE>& operator/(int iParam);
+
+		/**/
 		void MATAfficher();
+
+		/**/
 		CMatrice<MTYPE>& MATTransposer();
+
+		/**/
 		CMatrice<MTYPE>& operator+(CMatrice<MTYPE> &MATParam);
+
+		/**/
 		CMatrice<MTYPE>& operator-(CMatrice<MTYPE> &MATParam);
+
+		/**/
 		CMatrice<MTYPE>& operator*(CMatrice<MTYPE> &MATParam);
 
 };
