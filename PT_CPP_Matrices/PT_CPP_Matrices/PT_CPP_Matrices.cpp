@@ -27,7 +27,8 @@ int main()
 	M3 = (M3 / 4);
 	cout << M3.MATLireElement(1, 3) << "\n";
 	M3.MATAfficher();
-
+	M3 = M4.MATTransposer();
+	M3.MATAfficher();
 
 }
 

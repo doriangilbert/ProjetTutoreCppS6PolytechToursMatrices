@@ -126,4 +126,16 @@ template<class MTYPE> void CMatrice<MTYPE>::MATAfficher() {
 		cout << "\n";
 	}
 }
+
+template<class MTYPE> CMatrice<MTYPE>& CMatrice<MTYPE>::MATTransposer()
+{
+	CMatrice<MTYPE>* M1 = new CMatrice<MTYPE>(uiMATNbColonnes,uiMATNbLignes);
+
+	for (unsigned int i = 0; i < uiMATNbLignes; i++) {
+		for (unsigned int j = 0; j < uiMATNbColonnes; j++) {
+			M1->MATModifierElement(j, i, pMATMatrice[i][j]);
+		}
+	}
+	return *M1;
+};
 #endif
