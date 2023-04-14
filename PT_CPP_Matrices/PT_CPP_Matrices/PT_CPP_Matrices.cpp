@@ -17,12 +17,12 @@ int main()
 	CMatrice<int> M2(2, 5);
 	M2.MATModifierElement(1, 3, 5);
 	cout << M2.MATLireElement(1, 3) << "\n";
-	CMatrice<int> M3(M2),M4;
+	CMatrice<int> M3(M2),M4(1,1);
 	cout << M3.MATLireElement(1, 3) << "\n";
 	//marche pas avec les pointeur voila.
 	M4 = M3;
-	cout << M4.MATLireElement(1, 3) << "\n";
-	M3=M3*4;
+	cout << M4.MATLireElement(1,3) << "\n";
+	M3 = (M3 * 4);
 	cout << M3.MATLireElement(1, 3) << "\n";
 
 

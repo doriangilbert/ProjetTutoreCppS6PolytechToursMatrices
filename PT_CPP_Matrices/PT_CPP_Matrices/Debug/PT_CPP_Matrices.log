@@ -1,2 +1,4 @@
-﻿  CMatrice.cpp
-  PT_CPP_Matrices.vcxproj -> C:\Users\Administrateur\Documents\GitHub\ProjetTutoreCppS6PolytechToursMatrices\PT_CPP_Matrices\Debug\PT_CPP_Matrices.exe
+﻿  PT_CPP_Matrices.cpp
+c:\users\mathh\documents\github\projettutorecpps6polytechtoursmatrices\pt_cpp_matrices\pt_cpp_matrices\cmatrice.h(3): warning C4005: 'NULL' : redéfinition de macro
+  c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.16.27023\include\vcruntime.h(220): note: voir la définition précédente de 'NULL'
+  PT_CPP_Matrices.vcxproj -> C:\Users\mathh\Documents\GitHub\ProjetTutoreCppS6PolytechToursMatrices\PT_CPP_Matrices\Debug\PT_CPP_Matrices.exe

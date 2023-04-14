@@ -15,12 +15,10 @@ template<class MTYPE> CMatrice<MTYPE>::CMatrice(CMatrice<MTYPE>& MATParam)
 {
 	uiMATNbColonnes = MATParam.MATLireNbColonnes();
 	uiMATNbLignes = MATParam.MATLireNbLignes();
-	pMATMatrice = (MTYPE**)malloc(sizeof(MTYPE*) * uiMATNbLignes);
-	
+	pMATMatrice = new MTYPE*[uiMATNbLignes];
 	for (unsigned int i = 0; i < uiMATNbLignes; i++) {
-		pMATMatrice[i] = (MTYPE*)malloc(sizeof(MTYPE) * uiMATNbColonnes);
+		pMATMatrice[i] = new MTYPE[uiMATNbColonnes];
 	}
-
 	for (unsigned int i = 0; i < uiMATNbLignes; i++) {
 		for (unsigned int j = 0; j < uiMATNbColonnes; j++) {
 			pMATMatrice[i][j] = MATParam.MATLireElement(i, j);
@@ -32,9 +30,9 @@ template<class MTYPE> CMatrice<MTYPE>::CMatrice(unsigned int uiNbLignes, unsigne
 {
 	uiMATNbLignes = uiNbLignes;
 	uiMATNbColonnes = uiNbColonnes;
-	pMATMatrice = (MTYPE**)malloc(sizeof(MTYPE*) * uiMATNbLignes);
+	pMATMatrice = new MTYPE*[uiMATNbLignes];
 	for (unsigned int i = 0; i < uiMATNbLignes; i++) {
-		pMATMatrice[i] = (MTYPE*)malloc(sizeof(MTYPE) * uiMATNbColonnes);
+		pMATMatrice[i] = new MTYPE[uiMATNbColonnes];
 	}
 	for (unsigned int i = 0; i < uiMATNbLignes; i++) {
 		for (unsigned int j = 0; j < uiMATNbColonnes; j++) {
@@ -76,12 +74,18 @@ template<class MTYPE> void CMatrice<MTYPE>::MATModifierElement(unsigned int uiIn
 
 template<class MTYPE> CMatrice<MTYPE>& CMatrice<MTYPE>::operator=(CMatrice<MTYPE>& MATParam) 
 {
+	if (pMATMatrice != nullptr) {
+		for (unsigned int i = 0; i < uiMATNbLignes; i++) {
+			delete[] pMATMatrice[i];
+		}
+		delete [] pMATMatrice;
+	}
 	uiMATNbColonnes = MATParam.MATLireNbColonnes();
 	uiMATNbLignes = MATParam.MATLireNbLignes();
-	realloc(pMATMatrice,sizeof(MTYPE*) * uiMATNbLignes);
 
+	pMATMatrice = new MTYPE*[uiMATNbLignes];
 	for (unsigned int i = 0; i < uiMATNbLignes; i++) {
-		realloc(pMATMatrice[i],sizeof(MTYPE) * uiMATNbColonnes);
+		pMATMatrice[i] = new MTYPE[uiMATNbColonnes];
 	}
 
 	for (unsigned int i = 0; i < uiMATNbLignes; i++) {
@@ -94,14 +98,14 @@ template<class MTYPE> CMatrice<MTYPE>& CMatrice<MTYPE>::operator=(CMatrice<MTYPE
 
 template<class MTYPE> CMatrice<MTYPE>& CMatrice<MTYPE>::operator*(int iParam) 
 {
-	CMatrice<MTYPE> M1(uiMATNbLignes,uiMATNbColonnes);
+	CMatrice<MTYPE>* M1=new CMatrice<MTYPE>(uiMATNbLignes,uiMATNbColonnes);
 
 	for (unsigned int i = 0; i < uiMATNbLignes; i++) {
 		for (unsigned int j = 0; j < uiMATNbColonnes; j++) {
-			M1.MATModifierElement(i,j, pMATMatrice[i][j]*iParam);
+			M1->MATModifierElement(i,j, (MTYPE)(pMATMatrice[i][j]*iParam));
 		}
 	}
-	return M1;
+	return *M1;
 };
 
 #endif
