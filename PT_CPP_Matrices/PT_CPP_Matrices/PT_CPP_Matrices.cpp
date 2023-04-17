@@ -22,13 +22,20 @@ int main()
 	//marche pas avec les pointeur voila.
 	M4 = M3;
 	cout << M4.MATLireElement(1,3) << "\n";
-	M3 = (M3 * 4);
+	M3 = (M3*4);
 	cout << M3.MATLireElement(1, 3) << "\n";
 	M3 = (M3 / 4);
 	cout << M3.MATLireElement(1, 3) << "\n";
 	M3.MATAfficher();
 	M3 = M4.MATTransposer();
 	M3.MATAfficher();
+	M4 = M4 + M4;
+	M4.MATAfficher();
+	M3 = M3 - M3;
+	M3.MATAfficher();
+	M4 = M4 * M4;
+	M4.MATAfficher();
+
 
 }
 

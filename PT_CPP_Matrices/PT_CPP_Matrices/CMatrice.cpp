@@ -101,11 +101,27 @@ template<class MTYPE> CMatrice<MTYPE>& CMatrice<MTYPE>::operator*(int iParam)
 
 	for (unsigned int i = 0; i < uiMATNbLignes; i++) {
 		for (unsigned int j = 0; j < uiMATNbColonnes; j++) {
-			M1->MATModifierElement(i,j, (MTYPE)(pMATMatrice[i][j]*iParam));
+			M1->MATModifierElement(i,j, pMATMatrice[i][j]*iParam);
 		}
 	}
 	return *M1;
 };
+
+/*
+template<class MTYPE> CMatrice<MTYPE>& operator*(int iParam,CMatrice<MTYPE> MATParam)
+{
+	unsigned int uiMATNbLignes = MATParam.MATLireNbLignes();
+	unsigned int uiMATNbColonnes = MATParam.MATLireNbColonnes();
+	CMatrice<MTYPE>* M1 = new CMatrice<MTYPE>(uiMATNbLignes, uiMATNbColonnes);
+
+	for (unsigned int i = 0; i < uiMATNbLignes; i++) {
+		for (unsigned int j = 0; j < uiMATNbColonnes; j++) {
+			M1->MATModifierElement(i, j, MATParam.MATLireElement(i,j) *iParam);
+		}
+	}
+	return *M1;
+};*/
+
 
 template<class MTYPE> CMatrice<MTYPE>& CMatrice<MTYPE>::operator/(int iParam)
 {
@@ -138,4 +154,43 @@ template<class MTYPE> CMatrice<MTYPE>& CMatrice<MTYPE>::MATTransposer()
 	}
 	return *M1;
 };
+
+template<class MTYPE> CMatrice<MTYPE>& CMatrice<MTYPE>::operator+(CMatrice<MTYPE> &MATParam) {
+	//Faire une exception si les tailles ne sont pas egales.
+	
+	CMatrice<MTYPE>* M1 = new CMatrice<MTYPE>(uiMATNbLignes, uiMATNbColonnes);
+
+	for (unsigned int i = 0; i < uiMATNbLignes; i++) {
+		for (unsigned int j = 0; j < uiMATNbColonnes; j++) {
+			M1->MATModifierElement(i, j, pMATMatrice[i][j]+ MATParam.MATLireElement(i,j));
+		}
+	}
+	return *M1;
+};
+
+template<class MTYPE> CMatrice<MTYPE>& CMatrice<MTYPE>::operator-(CMatrice<MTYPE> &MATParam) {
+	//Faire une exception si les tailles ne sont pas egales.
+
+	CMatrice<MTYPE>* M1 = new CMatrice<MTYPE>(uiMATNbLignes, uiMATNbColonnes);
+
+	for (unsigned int i = 0; i < uiMATNbLignes; i++) {
+		for (unsigned int j = 0; j < uiMATNbColonnes; j++) {
+			M1->MATModifierElement(i, j, pMATMatrice[i][j] - MATParam.MATLireElement(i, j));
+		}
+	}
+	return *M1;
+}
+
+template<class MTYPE> CMatrice<MTYPE>& CMatrice<MTYPE>::operator*(CMatrice<MTYPE> &MATParam) {
+	//Faire une exception si les tailles ne sont pas egales.
+
+	CMatrice<MTYPE>* M1 = new CMatrice<MTYPE>(uiMATNbLignes, uiMATNbColonnes);
+
+	for (unsigned int i = 0; i < uiMATNbLignes; i++) {
+		for (unsigned int j = 0; j < uiMATNbColonnes; j++) {
+			M1->MATModifierElement(i, j, pMATMatrice[i][j] * MATParam.MATLireElement(i, j));
+		}
+	}
+	return *M1;
+}
 #endif
