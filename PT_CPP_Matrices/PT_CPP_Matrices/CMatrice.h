@@ -109,29 +109,93 @@ template<class MTYPE> class CMatrice
 		************************************************************************************************************************************************/
 		void MATModifierElement(unsigned int uiIndiceLigne, unsigned int uiIndiceColonne, MTYPE valeur);
 
-		/**/
+		/********************************************************************************************************
+		***** operator= : Surcharge de l'opérateur = de CMatrice<MTYPE> prenant un CMatrice<MTYPE> à droite *****
+		*********************************************************************************************************
+		***** Entrée : MATParam, un objet de type CMatrice<MTYPE>                                           *****
+		***** Nécessite :                                                                                   *****
+		***** Sortie : objet CMatrice<MTYPE>, retourné par référence                                        *****
+		***** Entraine : Un objet CMatrice<MTYPE> à été initialisé correspondant à une copie de l'objet     *****
+		***** MATParam                                                                                      *****
+		********************************************************************************************************/
 		CMatrice<MTYPE>& operator=(CMatrice<MTYPE> &MATParam);
 
-		/**/
+		/**************************************************************************************************************************************************
+		***** operator* : Surcharge de l'opérateur * de CMatrice<MTYPE> prenant un entier à droite permettant de multiplier une matrice par un nombre *****
+		***************************************************************************************************************************************************
+		***** Entrée : iParam, entier, entier avec lequel multiplier la matrice                                                                       *****
+		***** Nécessite :                                                                                                                             *****
+		***** Sortie : objet CMatrice<MTYPE>, retourné par référence                                                                                  *****
+		***** Entraine : Un objet CMatrice<MTYPE> à été initialisé correspondant au résultat de la multiplication de la matrice avec l'entier en      *****
+		***** paramètre                                                                                                                               *****
+		**************************************************************************************************************************************************/
 		CMatrice<MTYPE>& operator*(int iParam);
 
-		/**/
+		/***********************************************************************************************************************************************
+		***** operator/ : Surcharge de l'opérateur / de CMatrice<MTYPE> prenant un entier à droite permettant de diviser une matrice par un nombre *****
+		************************************************************************************************************************************************
+		***** Entrée : iParam, entier, entier avec lequel diviser la matrice                                                                       *****
+		***** Nécessite :                                                                                                                          *****
+		***** Sortie : objet CMatrice<MTYPE>, retourné par référence                                                                               *****
+		***** Entraine : Un objet CMatrice<MTYPE> à été initialisé correspondant au résultat de la division de la matrice avec l'entier en         *****
+		***** paramètre                                                                                                                            *****
+		***********************************************************************************************************************************************/
 		CMatrice<MTYPE>& operator/(int iParam);
 
-		/**/
+		/*****************************************************************************
+		***** MATAfficher : Fonction permettant d'afficher une matrice à l'écran *****
+		******************************************************************************
+		***** Entrée :                                                           *****
+		***** Nécessite :                                                        *****
+		***** Sortie :                                                           *****
+		***** Entraine : La fonction à affiché le contenu de la matrice à        *****
+		***** l'écran                                                            *****
+		*****************************************************************************/
 		void MATAfficher();
 
-		/**/
+		/**************************************************************************************
+		***** MATTransposer : Fonction permettant de calculer la transposée d'une matrice *****
+		***************************************************************************************
+		***** Entrée :                                                                    *****
+		***** Nécessite :                                                                 *****
+		***** Sortie : objet CMatrice<MTYPE>, retourné par référence                      *****
+		***** Entraine : Un objet CMatrice<MTYPE> à été initialisé correspondant à la     *****
+		***** transposée de la matrice (les lignes et les colonnes ont été échangées      *****
+		**************************************************************************************/
 		CMatrice<MTYPE>& MATTransposer();
 
-		/**/
+		/****************************************************************************************************************************************
+		***** operator+ : Surcharge de l'opérateur + de CMatrice<MTYPE> prenant une matrice à droite permettant d'additionner deux matrices *****
+		*****************************************************************************************************************************************
+		***** Entrée : MATParam, un objet de type CMatrice<MTYPE>                                                                           *****
+		***** Nécessite : La matrice appelante est de la même taille que MATParam                                                           *****
+		***** Sortie : objet CMatrice<MTYPE>, retourné par référence                                                                        *****
+		***** Entraine : Un objet CMatrice<MTYPE> à été initialisé correspondant au résultat de la addition de la matrice avec la matrice   *****
+		***** en paramètre                                                                                                                  *****
+		****************************************************************************************************************************************/
 		CMatrice<MTYPE>& operator+(CMatrice<MTYPE> &MATParam);
 
-		/**/
+		/****************************************************************************************************************************************
+		***** operator- : Surcharge de l'opérateur - de CMatrice<MTYPE> prenant une matrice à droite permettant de soustraire deux matrices *****
+		*****************************************************************************************************************************************
+		***** Entrée : MATParam, un objet de type CMatrice<MTYPE>                                                                           *****
+		***** Nécessite : La matrice appelante est de la même taille que MATParam                                                           *****
+		***** Sortie : objet CMatrice<MTYPE>, retourné par référence                                                                        *****
+		***** Entraine : Un objet CMatrice<MTYPE> à été initialisé correspondant au résultat de la soustraction de la matrice avec la       *****
+		***** matrice en paramètre                                                                                                          *****
+		****************************************************************************************************************************************/
 		CMatrice<MTYPE>& operator-(CMatrice<MTYPE> &MATParam);
 
-		/**/
-		CMatrice<MTYPE>& operator*(CMatrice<MTYPE> &MATParam);
+		/**********************************************************************************************************************************************
+		***** operator* : Surcharge de l'opérateur * de CMatrice<MTYPE> prenant une matrice à droite permettant de faire le produit deux matrices *****
+		***********************************************************************************************************************************************
+		***** Entrée : MATParam, un objet de type CMatrice<MTYPE>                                                                                 *****
+		***** Nécessite : La matrice appelante est de la même taille que MATParam                                                                 *****
+		***** Sortie : objet CMatrice<MTYPE>, retourné par référence                                                                              *****
+		***** Entraine : Un objet CMatrice<MTYPE> à été initialisé correspondant au résultat du produit de la matrice avec la matrice en          *****
+		***** paramètre                                                                                                                           *****
+		**********************************************************************************************************************************************/
+		CMatrice<MTYPE>& operator*(CMatrice<MTYPE> &MATParam); //Produit terme à terme ou produit matriciel
 
 };
 
