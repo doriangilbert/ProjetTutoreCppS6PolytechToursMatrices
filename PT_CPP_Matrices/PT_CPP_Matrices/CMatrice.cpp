@@ -203,21 +203,6 @@ template<class MTYPE> CMatrice<MTYPE>& CMatrice<MTYPE>::operator*(int iParam)
 	return *M1;
 };
 
-/*
-template<class MTYPE> CMatrice<MTYPE>& operator*(int iParam,CMatrice<MTYPE> MATParam)
-{
-	unsigned int uiMATNbLignes = MATParam.MATLireNbLignes();
-	unsigned int uiMATNbColonnes = MATParam.MATLireNbColonnes();
-	CMatrice<MTYPE>* M1 = new CMatrice<MTYPE>(uiMATNbLignes, uiMATNbColonnes);
-
-	for (unsigned int i = 0; i < uiMATNbLignes; i++) {
-		for (unsigned int j = 0; j < uiMATNbColonnes; j++) {
-			M1->MATModifierElement(i, j, MATParam.MATLireElement(i,j) *iParam);
-		}
-	}
-	return *M1;
-};*/
-
 /***********************************************************************************************************************************************
 ***** operator/ : Surcharge de l'opérateur / de CMatrice<MTYPE> prenant un entier à droite permettant de diviser une matrice par un nombre *****
 ************************************************************************************************************************************************
@@ -362,12 +347,20 @@ template<class MTYPE> CMatrice<MTYPE>& CMatrice<MTYPE>::operator*(CMatrice<MTYPE
 	return *M1;
 }
 
-template<class MTYPE> CMatrice<MTYPE>& operator*(int iParam,CMatrice<MTYPE> MATParam) {
+/*******************************************************************************************************************************************************
+***** operator* : Surcharge de l'opérateur * prenant un entier à gauche et une matrice à droite permettant de multiplier une matrice par un nombre *****
+********************************************************************************************************************************************************
+***** Entrée : - iParam, entier, entier avec lequel multiplier la matrice                                                                          *****
+***** - MATParam, un objet de type CMatrice<MTYPE>                                                                                                 *****
+***** Nécessite :                                                                                                                                  *****
+***** Sortie : objet CMatrice<MTYPE>, retourné par référence                                                                                       *****
+***** Entraine : Un objet CMatrice<MTYPE> à été initialisé correspondant au résultat de la multiplication de la matrice avec l'entier en paramètre *****
+*******************************************************************************************************************************************************/
+template<class MTYPE> CMatrice<MTYPE>& operator*(int iParam, CMatrice<MTYPE> MATParam) {
 
 	unsigned int uiMATNbLignes, uiMATNbColonnes;
 	uiMATNbLignes = MATParam.MATLireNbLignes();
 	uiMATNbColonnes = MATParam.MATLireNbColonnes();
-
 
 	CMatrice<MTYPE>* M1=new CMatrice<MTYPE>(uiMATNbLignes,uiMATNbColonnes);
 
@@ -379,12 +372,20 @@ template<class MTYPE> CMatrice<MTYPE>& operator*(int iParam,CMatrice<MTYPE> MATP
 	return *M1;
 }
 
+/****************************************************************************************************************************************************
+***** operator/ : Surcharge de l'opérateur / prenant un entier à gauche et une matrice à droite permettant de diviser une matrice par un nombre *****
+*****************************************************************************************************************************************************
+***** Entrée : - iParam, entier, entier avec lequel diviser la matrice                                                                          *****
+***** - MATParam, un objet de type CMatrice<MTYPE>                                                                                              *****
+***** Nécessite :                                                                                                                               *****
+***** Sortie : objet CMatrice<MTYPE>, retourné par référence                                                                                    *****
+***** Entraine : Un objet CMatrice<MTYPE> à été initialisé correspondant au résultat de la division de la matrice avec l'entier en paramètre    *****
+****************************************************************************************************************************************************/
 template<class MTYPE> CMatrice<MTYPE>& operator/(int iParam, CMatrice<MTYPE> MATParam) {
 
 	unsigned int uiMATNbLignes, uiMATNbColonnes;
 	uiMATNbLignes = MATParam.MATLireNbLignes();
 	uiMATNbColonnes = MATParam.MATLireNbColonnes();
-
 
 	CMatrice<MTYPE>* M1 = new CMatrice<MTYPE>(uiMATNbLignes, uiMATNbColonnes);
 
