@@ -1,10 +1,11 @@
 #ifndef CMatrice_h
 #define CMatrice_h
-
+#include "CException.h"
 #include <iostream>
 using namespace std;
 
 #define NULL 0;
+#define TailleNonCorrespondantes 1;
 
 //CMatrice est un patron de classe permettant de manipuler des matrices d'éléments de type quelconque (type générique MTYPE)
 template<class MTYPE> class CMatrice

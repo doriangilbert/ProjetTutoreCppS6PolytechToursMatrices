@@ -288,8 +288,13 @@ template<class MTYPE> CMatrice<MTYPE>& CMatrice<MTYPE>::MATTransposer()
 ***** en paramètre                                                                                                                  *****
 ****************************************************************************************************************************************/
 template<class MTYPE> CMatrice<MTYPE>& CMatrice<MTYPE>::operator+(CMatrice<MTYPE> &MATParam) {
-	//Faire une exception si les tailles ne sont pas egales.
-	
+
+	if (uiMATNbColonnes != MATParam.MATLireNbColonnes() || uiMATNbLignes != MATParam.MATLireNbLignes()) {
+		CException EXCErreur;
+		EXCErreur.EXCModifierValeur(1);
+		throw EXCErreur;
+	}
+
 	CMatrice<MTYPE>* M1 = new CMatrice<MTYPE>(uiMATNbLignes, uiMATNbColonnes);
 
 	for (unsigned int i = 0; i < uiMATNbLignes; i++) {
@@ -310,7 +315,12 @@ template<class MTYPE> CMatrice<MTYPE>& CMatrice<MTYPE>::operator+(CMatrice<MTYPE
 ***** matrice en paramètre                                                                                                          *****
 ****************************************************************************************************************************************/
 template<class MTYPE> CMatrice<MTYPE>& CMatrice<MTYPE>::operator-(CMatrice<MTYPE> &MATParam) {
-	//Faire une exception si les tailles ne sont pas egales.
+	
+	if (uiMATNbColonnes != MATParam.MATLireNbColonnes() || uiMATNbLignes != MATParam.MATLireNbLignes()) {
+		CException EXCErreur;
+		EXCErreur.EXCModifierValeur(1);
+		throw EXCErreur;
+	}
 
 	CMatrice<MTYPE>* M1 = new CMatrice<MTYPE>(uiMATNbLignes, uiMATNbColonnes);
 
@@ -332,16 +342,57 @@ template<class MTYPE> CMatrice<MTYPE>& CMatrice<MTYPE>::operator-(CMatrice<MTYPE
 ***** paramètre                                                                                                                           *****
 **********************************************************************************************************************************************/
 template<class MTYPE> CMatrice<MTYPE>& CMatrice<MTYPE>::operator*(CMatrice<MTYPE> &MATParam) {
-	//Faire une exception si les tailles ne sont pas egales.
 
-	CMatrice<MTYPE>* M1 = new CMatrice<MTYPE>(uiMATNbLignes, uiMATNbColonnes);
+	if (uiMATNbLignes != MATParam.MATLireNbColonnes()) {
+		CException EXCErreur;
+		EXCErreur.EXCModifierValeur(1);
+		throw EXCErreur;
+	}
+	CMatrice<MTYPE>* M1 = new CMatrice<MTYPE>(uiMATNbLignes, MATParam.MATLireNbColonnes());
 
 	for (unsigned int i = 0; i < uiMATNbLignes; i++) {
-		for (unsigned int j = 0; j < uiMATNbColonnes; j++) {
-			M1->MATModifierElement(i, j, pMATMatrice[i][j] * MATParam.MATLireElement(i, j));
+		for (unsigned int j = 0; j < MATParam.MATLireNbColonnes(); j++) {
+			MTYPE C=pMATMatrice[i][0]* MATParam.MATLireElement(0, j);
+			for (unsigned int k = 1; k < uiMATNbColonnes; k++) {
+				C = C + pMATMatrice[i][k] * MATParam.MATLireElement(k, j);
+			}
+			M1->MATModifierElement(i, j, C);
 		}
 	}
 	return *M1;
 }
 
+template<class MTYPE> CMatrice<MTYPE>& operator*(int iParam,CMatrice<MTYPE> MATParam) {
+
+	unsigned int uiMATNbLignes, uiMATNbColonnes;
+	uiMATNbLignes = MATParam.MATLireNbLignes();
+	uiMATNbColonnes = MATParam.MATLireNbColonnes();
+
+
+	CMatrice<MTYPE>* M1=new CMatrice<MTYPE>(uiMATNbLignes,uiMATNbColonnes);
+
+	for (unsigned int i = 0; i < uiMATNbLignes; i++) {
+		for (unsigned int j = 0; j < uiMATNbColonnes; j++) {
+			M1->MATModifierElement(i,j, MATParam.MATLireElement(i,j)*iParam);
+		}
+	}
+	return *M1;
+}
+
+template<class MTYPE> CMatrice<MTYPE>& operator/(int iParam, CMatrice<MTYPE> MATParam) {
+
+	unsigned int uiMATNbLignes, uiMATNbColonnes;
+	uiMATNbLignes = MATParam.MATLireNbLignes();
+	uiMATNbColonnes = MATParam.MATLireNbColonnes();
+
+
+	CMatrice<MTYPE>* M1 = new CMatrice<MTYPE>(uiMATNbLignes, uiMATNbColonnes);
+
+	for (unsigned int i = 0; i < uiMATNbLignes; i++) {
+		for (unsigned int j = 0; j < uiMATNbColonnes; j++) {
+			M1->MATModifierElement(i, j, MATParam.MATLireElement(i, j)/iParam);
+		}
+	}
+	return *M1;
+}
 #endif
