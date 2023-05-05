@@ -33,6 +33,11 @@ template<class MTYPE> CMatrice<MTYPE>::CMatrice()
 ***********************************************************************/
 template<class MTYPE> CMatrice<MTYPE>::CMatrice(CMatrice<MTYPE>& MATParam)
 {
+	if (MATParam.MATLireNbColonnes() == 0 || MATParam.MATLireNbLignes() == 0) {
+		CException EXCErreur;
+		EXCErreur.EXCModifierValeur(2);
+		throw EXCErreur;
+	}
 	uiMATNbColonnes = MATParam.MATLireNbColonnes();
 	uiMATNbLignes = MATParam.MATLireNbLignes();
 	pMATMatrice = new MTYPE*[uiMATNbLignes];
@@ -60,6 +65,11 @@ template<class MTYPE> CMatrice<MTYPE>::CMatrice(CMatrice<MTYPE>& MATParam)
 ***********************************************************************/
 template<class MTYPE> CMatrice<MTYPE>::CMatrice(unsigned int uiNbLignes, unsigned int uiNbColonnes)
 {
+	if (uiMATNbLignes == 0 || uiMATNbColonnes == 0) {
+		CException EXCErreur;
+		EXCErreur.EXCModifierValeur(2);
+		throw EXCErreur;
+	}
 	uiMATNbLignes = uiNbLignes;
 	uiMATNbColonnes = uiNbColonnes;
 	pMATMatrice = new MTYPE*[uiMATNbLignes];
@@ -170,12 +180,20 @@ template<class MTYPE> void CMatrice<MTYPE>::MATModifierElement(unsigned int uiIn
 ********************************************************************************************************/
 template<class MTYPE> CMatrice<MTYPE>& CMatrice<MTYPE>::operator=(CMatrice<MTYPE>& MATParam) 
 {
+	if (MATParam.MATLireNbColonnes() == 0 || MATParam.MATLireNbLignes() == 0) {
+		CException EXCErreur;
+		EXCErreur.EXCModifierValeur(2);
+		throw EXCErreur;
+	}
+
 	if (pMATMatrice != nullptr) {
 		for (unsigned int i = 0; i < uiMATNbLignes; i++) {
 			delete[] pMATMatrice[i];
 		}
 		delete [] pMATMatrice;
 	}
+	
+
 	uiMATNbColonnes = MATParam.MATLireNbColonnes();
 	uiMATNbLignes = MATParam.MATLireNbLignes();
 
