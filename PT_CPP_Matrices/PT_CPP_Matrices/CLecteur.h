@@ -18,9 +18,16 @@ class CLecteur
 
 	public:
 		CLecteur();
+		CLecteur(CLecteur &LECParam);
 		CLecteur(char* pcNomFichier);
+		~CLecteur();
 
-		CMatrice<double>& LECLireFichierMatrice();
+		char* LECLireNomFichier();
+		void LECModifierValeur(char* pcNomFichier);
+
+		CLecteur& operator=(CLecteur& LECParam);
+
+		CMatrice<double>& LECLireFichierMatrice(); //Méthode non faite sous la forme d'un constructeur de CMatrice car elle fait appel au constructeur CMatrice<MTYPE>(unsigned int uiNbLignes, unsigned int uiNbColonnes) et on ne peut pas appeler un contructeur sur une classe dans un contructeur de cette même classe
 };
 
 #endif

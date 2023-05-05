@@ -4,11 +4,15 @@
 #include <iostream>
 
 #include "CMatrice.h"
+#include "CLecteur.h"
 
 using namespace std;
 
-int main()
+int main(int argc, char* argv[])
 {
+
+	CLecteur * lecteur = new CLecteur(argv[1]);
+
  	CMatrice<double> LISMATListeMatrice[5];
 	for (int uiBoucleIndiceListeMatrice = 0; uiBoucleIndiceListeMatrice < 5; uiBoucleIndiceListeMatrice++) {
 		LISMATListeMatrice[uiBoucleIndiceListeMatrice] = *(new CMatrice<double>(2, 2));

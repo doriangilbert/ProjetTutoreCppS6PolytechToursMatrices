@@ -5,9 +5,34 @@ CLecteur::CLecteur()
 	pcLECNomFichier = NULL;
 }
 
+CLecteur::CLecteur(CLecteur &LECParam) 
+{
+	strcpy(pcLECNomFichier, LECParam.LECLireNomFichier());
+}
+
 CLecteur::CLecteur(char* pcNomFichier)
 {
-	pcLECNomFichier = pcNomFichier;
+	//TODO : Allouer chaine
+}
+
+CLecteur::~CLecteur()
+{
+	//TODO : Désallouer suite
+}
+
+char* CLecteur::LECLireNomFichier()
+{
+	return pcLECNomFichier;
+}
+
+void CLecteur::LECModifierValeur(char* pcNomFichier)
+{
+	strcpy(pcLECNomFichier, pcNomFichier);
+}
+
+CLecteur& CLecteur::operator=(CLecteur& LECParam) 
+{
+	strcpy(pcLECNomFichier, LECParam.LECLireNomFichier());
 }
 
 CMatrice<double>& CLecteur::LECLireFichierMatrice()
@@ -28,7 +53,8 @@ CMatrice<double>& CLecteur::LECLireFichierMatrice()
 	else 
 	{
 		sscanf(pcLigne, "TypeMatrice=%s", pcTypeMatrice); //Pour les sscanf : vérifier si on a bien eu le bon type
-		if (strcmp(pcTypeMatrice, "double") != 0) {
+		if (strcmp(pcTypeMatrice, "double") != 0)
+		{
 			//TODO : ERREUR type non double
 		}
 	}
@@ -42,10 +68,12 @@ CMatrice<double>& CLecteur::LECLireFichierMatrice()
 	else
 	{
 		sscanf(pcLigne, "NBLignes=%d", &iNBLignes);
-		if (iNBLignes < 0) {
+		if (iNBLignes < 0) 
+		{
 			//TODO : ERREUR valeur négative
 		}
-		else {
+		else 
+		{
 			uiNBLignes = iNBLignes;
 		}
 	}
@@ -59,7 +87,8 @@ CMatrice<double>& CLecteur::LECLireFichierMatrice()
 	else
 	{
 		sscanf(pcLigne, "NBColonnes=%d", &iNBColonnes);
-		if (iNBColonnes < 0) {
+		if (iNBColonnes < 0) 
+		{
 			//TODO : ERREUR valeur négative
 		}
 		else {
@@ -67,9 +96,36 @@ CMatrice<double>& CLecteur::LECLireFichierMatrice()
 		}
 	}
 	CMatrice<double>* MATMatrice = new CMatrice<double>(uiNBLignes, uiNBColonnes);
+	fgets(pcLigne, 1024, fichier);
+	if (strncmp(pcLigne, "Matrice=[", 9) != 0)
+	{
+		//TODO : ERREUR format
+	}
+
 
 	//TODO : Parcourir la suite du fichier et remplir la matrice
 
+	for (unsigned int uiBoucleIndiceLigne = 0; uiBoucleIndiceLigne < uiNBLignes; uiBoucleIndiceLigne++)
+	{
+		fgets(pcLigne, 1024, fichier);
+		double dElement = 0;
+		unsigned int uiIndiceColonne = 0;
+		while (sscanf(pcLigne, "%lf", &dElement))
+		{
+			MATMatrice->MATModifierElement(uiBoucleIndiceLigne, uiIndiceColonne, dElement);
+			uiIndiceColonne++;
+			if (uiIndiceColonne > uiNBColonnes)
+			{
+				//TODO : ERREUR format
+			}
+		}
+	}
 
+
+	fgets(pcLigne, 1024, fichier);
+	if (strncmp(pcLigne, "]", 1) != 0)
+	{
+		//TODO : ERREUR format
+	}
 	return *MATMatrice;
 }
