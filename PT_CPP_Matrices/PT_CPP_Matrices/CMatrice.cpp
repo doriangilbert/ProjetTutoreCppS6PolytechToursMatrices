@@ -130,6 +130,11 @@ template<class MTYPE> int CMatrice<MTYPE>::MATLireNbColonnes()
 template<class MTYPE> MTYPE CMatrice<MTYPE>::MATLireElement(unsigned int uiIndiceLigne, unsigned int uiIndiceColonne)
 {
 	// faut tester si uiIndiceLigne >= nbLignes ou si uiIndiceColonne >= nbColonnes
+	if (uiIndiceLigne >= uiMATNbLignes || uiIndiceColonne >= uiMATNbColonnes) {
+		CException EXCErreur;
+		EXCErreur.EXCModifierValeur(3);
+		throw EXCErreur;
+	}
 	return pMATMatrice[uiIndiceLigne][uiIndiceColonne];
 };
 
@@ -146,6 +151,11 @@ template<class MTYPE> MTYPE CMatrice<MTYPE>::MATLireElement(unsigned int uiIndic
 ************************************************************************************************************************************************/
 template<class MTYPE> void CMatrice<MTYPE>::MATModifierElement(unsigned int uiIndiceLigne, unsigned int uiIndiceColonne, MTYPE valeur)
 {
+	if (uiIndiceLigne >= uiMATNbLignes || uiIndiceColonne >= uiMATNbColonnes) {
+		CException EXCErreur;
+		EXCErreur.EXCModifierValeur(3);
+		throw EXCErreur;
+	}
 	pMATMatrice[uiIndiceLigne][uiIndiceColonne] = valeur;
 };
 
@@ -234,6 +244,11 @@ template<class MTYPE> CMatrice<MTYPE>& CMatrice<MTYPE>::operator/(int iParam)
 ***** l'écran                                                            *****
 *****************************************************************************/
 template<class MTYPE> void CMatrice<MTYPE>::MATAfficher() {
+	if (uiMATNbColonnes == 0 || uiMATNbLignes == 0) {
+		CException EXCErreur;
+		EXCErreur.EXCModifierValeur(2);
+		throw EXCErreur;
+	}
 	for (unsigned int i = 0; i < uiMATNbLignes; i++) {
 		for (unsigned int j = 0; j < uiMATNbColonnes; j++) {
 			cout << pMATMatrice[i][j] << " ";

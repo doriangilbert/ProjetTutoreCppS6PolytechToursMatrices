@@ -9,49 +9,7 @@ using namespace std;
 
 int main()
 {
- //   std::cout << "Hello World!\n"; 
- //   CMatrice<int> M1(2,2);
- //   cout << M1.MATLireNbLignes() << "\n";
- //   cout << M1.MATLireNbColonnes() << "\n";
-
-	//CMatrice<int> M2(2, 2);
-	//M2.MATModifierElement(1, 1, 5);
-	//cout << M2.MATLireElement(1, 1) << "\n";
-	//CMatrice<int> M3(M2),M4(1,1),I2(2,2);
-	//I2.MATModifierElement(0, 0,1);
-	//I2.MATModifierElement(1, 0,0);
-	//I2.MATModifierElement(0, 1,0);
-	//I2.MATModifierElement(1, 1,1);
-	//cout << M3.MATLireElement(1, 1) << "\n";
-	////marche pas avec les pointeur voila.
-	//M4 = M3;
-	//cout << "Resultat M4=M3\n";
-	//M4.MATAfficher();
-	//M3 = (M3*4);
-	//cout << "Resultat M3=M3*4\n";
-	//M3.MATAfficher();
-	//M3 = (M3 / 4);
-	//cout << "Resultat M3=M3/4\n";
-	//M3.MATAfficher();
-	//M3 = M4.MATTransposer();
-	//cout << "Resultat M4=trans(M3)\n";
-	//M3.MATAfficher();
-	//M4 = M4 + M4;
-	//cout << "Resultat M4=M4+M4\n";
-	//M4.MATAfficher();
-	//M3 = M3 - M3;
-	//cout << "Resultat M3=M3-M3\n";
-	//M3.MATAfficher();
-	//M4 = M4 * I2;
-	//cout << "Resultat M4=M4*I2\n";
-	//M4.MATAfficher();
-	//M4 = (2*M4);
-	//cout << "Resultat M4=2*M4\n";
-	//M4.MATAfficher();
-	//M4 = (2 / M4);
-	//cout << "Resultat M4=2/M4\n";
-	//M4.MATAfficher();
-	CMatrice<double> LISMATListeMatrice[5];
+ 	CMatrice<double> LISMATListeMatrice[5];
 	for (int k = 0; k < 5; k++) {
 		LISMATListeMatrice[k] = *(new CMatrice<double>(2, 2));
 		for (unsigned int i = 0; i < 2; i++) {
