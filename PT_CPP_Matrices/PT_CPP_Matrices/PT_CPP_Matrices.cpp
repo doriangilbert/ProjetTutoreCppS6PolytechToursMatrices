@@ -10,11 +10,13 @@ using namespace std;
 
 int main(int argc, char* argv[])
 {
-	//TODO : Vérifier la valeur de argc (argc > 0) et lire argv si la condition est remplie
-	CLecteur * LECLecteur = new CLecteur(argv[1]);
-	CMatrice<double> MATMatrice = LECLecteur->LECLireFichierMatrice();
-	MATMatrice.MATAfficher();
-
+	//TODO : Vérifier la valeur de argc (argc > 1) et lire argv si la condition est remplie (y'a toujours le nom du fichier enfaite)
+	if (argc > 1) {
+		CLecteur * LECLecteur = new CLecteur(argv[1]);
+		CMatrice<double> MATMatrice = LECLecteur->LECLireFichierMatrice();
+		MATMatrice.MATAfficher();
+	}
+	
  	CMatrice<double> LISMATListeMatrice[5];
 	for (int uiBoucleIndiceListeMatrice = 0; uiBoucleIndiceListeMatrice < 5; uiBoucleIndiceListeMatrice++) {
 		LISMATListeMatrice[uiBoucleIndiceListeMatrice] = *(new CMatrice<double>(2, 2));

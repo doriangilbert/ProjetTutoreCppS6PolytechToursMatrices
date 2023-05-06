@@ -36,7 +36,7 @@ template<class MTYPE> CMatrice<MTYPE>::CMatrice(CMatrice<MTYPE>& MATParam)
 {
 	if (MATParam.MATLireNbColonnes() == 0 || MATParam.MATLireNbLignes() == 0) {
 		CException EXCErreur;
-		EXCErreur.EXCModifierValeur(2);
+		EXCErreur.EXCModifierValeur(MatriceVide);
 		throw EXCErreur;
 	}
 	uiMATNbColonnes = MATParam.MATLireNbColonnes();
@@ -69,7 +69,7 @@ template<class MTYPE> CMatrice<MTYPE>::CMatrice(unsigned int uiNbLignes, unsigne
 {
 	if (uiNbLignes == 0 || uiNbColonnes == 0) {
 		CException EXCErreur;
-		EXCErreur.EXCModifierValeur(2);
+		EXCErreur.EXCModifierValeur(MatriceVide);
 		throw EXCErreur;
 	}
 	uiMATNbLignes = uiNbLignes;
