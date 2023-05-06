@@ -10,8 +10,10 @@ using namespace std;
 
 int main(int argc, char* argv[])
 {
-
-	CLecteur * lecteur = new CLecteur(argv[1]);
+	//TODO : Vérifier la valeur de argc (argc > 0) et lire argv si la condition est remplie
+	CLecteur * LECLecteur = new CLecteur(argv[1]);
+	CMatrice<double> MATMatrice = LECLecteur->LECLireFichierMatrice();
+	MATMatrice.MATAfficher();
 
  	CMatrice<double> LISMATListeMatrice[5];
 	for (int uiBoucleIndiceListeMatrice = 0; uiBoucleIndiceListeMatrice < 5; uiBoucleIndiceListeMatrice++) {

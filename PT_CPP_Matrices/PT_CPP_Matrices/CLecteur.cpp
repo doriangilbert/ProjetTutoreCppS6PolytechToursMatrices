@@ -12,12 +12,13 @@ CLecteur::CLecteur(CLecteur &LECParam)
 
 CLecteur::CLecteur(char* pcNomFichier)
 {
-	//TODO : Allouer chaine
+	pcLECNomFichier = new char[strlen(pcNomFichier)];
+	strcpy(pcLECNomFichier, pcNomFichier);
 }
 
 CLecteur::~CLecteur()
 {
-	//TODO : Désallouer suite
+	delete[] pcLECNomFichier;
 }
 
 char* CLecteur::LECLireNomFichier()
@@ -33,6 +34,7 @@ void CLecteur::LECModifierValeur(char* pcNomFichier)
 CLecteur& CLecteur::operator=(CLecteur& LECParam) 
 {
 	strcpy(pcLECNomFichier, LECParam.LECLireNomFichier());
+	return *this;
 }
 
 CMatrice<double>& CLecteur::LECLireFichierMatrice()
@@ -43,9 +45,12 @@ CMatrice<double>& CLecteur::LECLireFichierMatrice()
 	{
 		//TODO : Gérer erreur ouverture
 	}
-	char* pcLigne = NULL;
-	fgets(pcLigne, 1024, fichier);
-	char* pcTypeMatrice = NULL;
+	char pcLigne[1024] = "";
+	if (!fgets(pcLigne, 1024, fichier))
+	{
+		//TODO : ERREUR Lecture
+	}
+	char pcTypeMatrice[1024] = "";
 	if (strncmp(pcLigne, "TypeMatrice=", 12) != 0) 
 	{
 		//TODO : ERREUR format
@@ -58,7 +63,10 @@ CMatrice<double>& CLecteur::LECLireFichierMatrice()
 			//TODO : ERREUR type non double
 		}
 	}
-	fgets(pcLigne, 1024, fichier);
+	if (!fgets(pcLigne, 1024, fichier))
+	{
+		//TODO : ERREUR Lecture
+	}
 	int iNBLignes = 0;
 	unsigned int uiNBLignes = 0;
 	if (strncmp(pcLigne, "NBLignes=", 9) != 0)
@@ -77,7 +85,10 @@ CMatrice<double>& CLecteur::LECLireFichierMatrice()
 			uiNBLignes = iNBLignes;
 		}
 	}
-	fgets(pcLigne, 1024, fichier);
+	if (!fgets(pcLigne, 1024, fichier))
+	{
+		//TODO : ERREUR Lecture
+	}
 	int iNBColonnes = 0;
 	unsigned int uiNBColonnes = 0;
 	if (strncmp(pcLigne, "NBColonnes=", 11) != 0)
@@ -96,33 +107,53 @@ CMatrice<double>& CLecteur::LECLireFichierMatrice()
 		}
 	}
 	CMatrice<double>* MATMatrice = new CMatrice<double>(uiNBLignes, uiNBColonnes);
-	fgets(pcLigne, 1024, fichier);
+	if (!fgets(pcLigne, 1024, fichier))
+	{
+		//TODO : ERREUR Lecture
+	}
 	if (strncmp(pcLigne, "Matrice=[", 9) != 0)
 	{
 		//TODO : ERREUR format
 	}
-
-
-	//TODO : Parcourir la suite du fichier et remplir la matrice
-
 	for (unsigned int uiBoucleIndiceLigne = 0; uiBoucleIndiceLigne < uiNBLignes; uiBoucleIndiceLigne++)
 	{
-		fgets(pcLigne, 1024, fichier);
-		double dElement = 0;
-		unsigned int uiIndiceColonne = 0;
-		while (sscanf(pcLigne, "%lf", &dElement))
+		if (!fgets(pcLigne, 1024, fichier))
 		{
-			MATMatrice->MATModifierElement(uiBoucleIndiceLigne, uiIndiceColonne, dElement);
-			uiIndiceColonne++;
-			if (uiIndiceColonne > uiNBColonnes)
-			{
-				//TODO : ERREUR format
+			//TODO : ERREUR Lecture
+		}
+		if (strncmp(pcLigne, "]", 1) == 0)
+		{
+			//TODO : ERREUR format (car pas assez de lignes)
+		}
+		double dElement = 0;
+		char* pcParcoursChaine = pcLigne;
+		unsigned int uiBoucleIndiceColonne = 0;
+		while (*pcParcoursChaine != '\n')
+		{
+			sscanf(pcParcoursChaine, "%lf", &dElement);
+			if (uiBoucleIndiceColonne < uiNBColonnes) {
+				MATMatrice->MATModifierElement(uiBoucleIndiceLigne, uiBoucleIndiceColonne, dElement);
 			}
+			if (strchr(pcParcoursChaine, ' ')) 
+			{
+				pcParcoursChaine = strchr(pcParcoursChaine, ' ');
+				pcParcoursChaine++;
+			}
+			else
+			{
+				pcParcoursChaine = strchr(pcParcoursChaine, '\n');
+			}
+			uiBoucleIndiceColonne++;
+		}
+		if (uiBoucleIndiceColonne != uiNBColonnes) 
+		{
+			//TODO : ERREUR format (car pas assez ou trop de valeurs dans la ligne)
 		}
 	}
-
-
-	fgets(pcLigne, 1024, fichier);
+	if (!fgets(pcLigne, 1024, fichier))
+	{
+		//TODO : ERREUR Lecture
+	}
 	if (strncmp(pcLigne, "]", 1) != 0)
 	{
 		//TODO : ERREUR format
