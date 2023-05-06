@@ -4,10 +4,11 @@
 #include <iostream>
 using namespace std;
 
-#define NULL 0;
-#define TailleNonCorrespondantes 1;
-#define MatriceVide 2;
-#define DepassementLigneOuColonne 3;
+#define NULL 0
+#define TailleNonCorrespondantes 1 
+#define MatriceVide 2 
+#define DepassementLigneOuColonne 3 
+#define DivisionPar0 4 
 
 //CMatrice est un patron de classe permettant de manipuler des matrices d'éléments de type quelconque (type générique MTYPE)
 template<class MTYPE> class CMatrice
