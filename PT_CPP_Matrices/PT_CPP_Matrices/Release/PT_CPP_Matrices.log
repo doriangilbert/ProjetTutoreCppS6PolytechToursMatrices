@@ -1,7 +1,6 @@
 ﻿  CLecteur.cpp
 d:\users\dodog\documents\projets visual studio\projettutorecpps6polytechtoursmatrices\pt_cpp_matrices\pt_cpp_matrices\clecteur.h(13): warning C4005: 'NULL' : redéfinition de macro
   c:\program files (x86)\microsoft visual studio\2017\buildtools\vc\tools\msvc\14.16.27023\include\vcruntime.h(220): note: voir la définition précédente de 'NULL'
-  CMatrice.cpp
   PT_CPP_Matrices.cpp
 d:\users\dodog\documents\projets visual studio\projettutorecpps6polytechtoursmatrices\pt_cpp_matrices\pt_cpp_matrices\clecteur.h(13): warning C4005: 'NULL' : redéfinition de macro
   c:\program files (x86)\microsoft visual studio\2017\buildtools\vc\tools\msvc\14.16.27023\include\vcruntime.h(220): note: voir la définition précédente de 'NULL'
@@ -14,6 +13,6 @@ d:\users\dodog\documents\projets visual studio\projettutorecpps6polytechtoursmat
   Génération de code en cours
   1 of 40 functions ( 2.5%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    0 functions had inline decision re-evaluated but remain unchanged
+    1 functions had inline decision re-evaluated but remain unchanged
   Fin de la génération du code
   PT_CPP_Matrices.vcxproj -> D:\Users\dodog\Documents\Projets Visual Studio\ProjetTutoreCppS6PolytechToursMatrices\PT_CPP_Matrices\Release\PT_CPP_Matrices.exe

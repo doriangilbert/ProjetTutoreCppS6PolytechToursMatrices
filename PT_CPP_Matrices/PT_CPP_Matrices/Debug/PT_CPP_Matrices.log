@@ -1,7 +1,6 @@
 ﻿  CLecteur.cpp
 d:\users\dodog\documents\projets visual studio\projettutorecpps6polytechtoursmatrices\pt_cpp_matrices\pt_cpp_matrices\clecteur.h(13): warning C4005: 'NULL' : redéfinition de macro
   c:\program files (x86)\microsoft visual studio\2017\buildtools\vc\tools\msvc\14.16.27023\include\vcruntime.h(220): note: voir la définition précédente de 'NULL'
-  CMatrice.cpp
   PT_CPP_Matrices.cpp
 d:\users\dodog\documents\projets visual studio\projettutorecpps6polytechtoursmatrices\pt_cpp_matrices\pt_cpp_matrices\clecteur.h(13): warning C4005: 'NULL' : redéfinition de macro
   c:\program files (x86)\microsoft visual studio\2017\buildtools\vc\tools\msvc\14.16.27023\include\vcruntime.h(220): note: voir la définition précédente de 'NULL'

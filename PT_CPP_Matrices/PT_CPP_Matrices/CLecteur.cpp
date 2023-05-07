@@ -123,12 +123,14 @@ CLecteur& CLecteur::operator=(CLecteur& LECParam)
 *************************************************************************************************/
 CMatrice<double>& CLecteur::LECLireFichierMatrice()
 {
+	//On vérifie la présence d'un nom de fichier
 	if (!pcLECNomFichier) 
 	{
 		CException EXCErreur;
 		EXCErreur.EXCModifierValeur(NomFichierManquant);
 		throw EXCErreur;
 	}
+	//Ouverture du fichier en mode lecture seule, erreur si l'ouverture échoue
 	FILE* fichier = fopen(pcLECNomFichier, "r");
 	if (!fichier) 
 	{
@@ -136,7 +138,8 @@ CMatrice<double>& CLecteur::LECLireFichierMatrice()
 		EXCErreur.EXCModifierValeur(EchecOuvertureFichier);
 		throw EXCErreur;
 	}
-	char pcLigne[1024] = "";
+	char pcLigne[1024] = ""; //Chaine permettant de stocker la ligne courante
+	//Lecture de la ligne suivante et erreur si la ligne est absente
 	if (!fgets(pcLigne, 1024, fichier))
 	{
 		CException EXCErreur;
@@ -144,6 +147,7 @@ CMatrice<double>& CLecteur::LECLireFichierMatrice()
 		throw EXCErreur;
 	}
 	char pcTypeMatrice[1024] = "";
+	//Vérification de la présence de TypeMatrice=
 	if (strncmp(pcLigne, "TypeMatrice=", 12) != 0) 
 	{
 		CException EXCErreur;
@@ -152,7 +156,9 @@ CMatrice<double>& CLecteur::LECLireFichierMatrice()
 	}
 	else 
 	{
-		sscanf(pcLigne, "TypeMatrice=%s", pcTypeMatrice); //Pour les sscanf : vérifier si on a bien eu le bon type
+		//Récupération de la valeur de TypeMatrice
+		sscanf(pcLigne, "TypeMatrice=%s", pcTypeMatrice);
+		//On vérifie que le type est bien "double"
 		if (strcmp(pcTypeMatrice, "double") != 0)
 		{
 			CException EXCErreur;
@@ -160,6 +166,7 @@ CMatrice<double>& CLecteur::LECLireFichierMatrice()
 			throw EXCErreur;
 		}
 	}
+	//Lecture de la ligne suivante et erreur si la ligne est absente
 	if (!fgets(pcLigne, 1024, fichier))
 	{
 		CException EXCErreur;
@@ -168,6 +175,7 @@ CMatrice<double>& CLecteur::LECLireFichierMatrice()
 	}
 	int iNBLignes = 0;
 	unsigned int uiNBLignes = 0;
+	//Vérification de la présence de NBLignes=
 	if (strncmp(pcLigne, "NBLignes=", 9) != 0)
 	{
 		CException EXCErreur;
@@ -176,6 +184,7 @@ CMatrice<double>& CLecteur::LECLireFichierMatrice()
 	}
 	else
 	{
+		//Récupération de la valeur de NBLignes
 		sscanf(pcLigne, "NBLignes=%d", &iNBLignes);
 		if (iNBLignes < 0) 
 		{
@@ -188,6 +197,7 @@ CMatrice<double>& CLecteur::LECLireFichierMatrice()
 			uiNBLignes = iNBLignes;
 		}
 	}
+	//Lecture de la ligne suivante et erreur si la ligne est absente
 	if (!fgets(pcLigne, 1024, fichier))
 	{
 		CException EXCErreur;
@@ -196,6 +206,7 @@ CMatrice<double>& CLecteur::LECLireFichierMatrice()
 	}
 	int iNBColonnes = 0;
 	unsigned int uiNBColonnes = 0;
+	//Vérification de la présence de NBColonnes=
 	if (strncmp(pcLigne, "NBColonnes=", 11) != 0)
 	{
 		CException EXCErreur;
@@ -204,6 +215,7 @@ CMatrice<double>& CLecteur::LECLireFichierMatrice()
 	}
 	else
 	{
+		//Récupération de la valeur de NBColonnes
 		sscanf(pcLigne, "NBColonnes=%d", &iNBColonnes);
 		if (iNBColonnes < 0) 
 		{
@@ -216,26 +228,31 @@ CMatrice<double>& CLecteur::LECLireFichierMatrice()
 		}
 	}
 	CMatrice<double>* MATMatrice = new CMatrice<double>(uiNBLignes, uiNBColonnes);
+	//Lecture de la ligne suivante et erreur si la ligne est absente
 	if (!fgets(pcLigne, 1024, fichier))
 	{
 		CException EXCErreur;
 		EXCErreur.EXCModifierValeur(FormatFichierInvalide);
 		throw EXCErreur;
 	}
+	//Vérification de la présence de Matrice=[
 	if (strncmp(pcLigne, "Matrice=[", 9) != 0)
 	{
 		CException EXCErreur;
 		EXCErreur.EXCModifierValeur(FormatFichierInvalide);
 		throw EXCErreur;
 	}
+	//Parcours des lignes
 	for (unsigned int uiBoucleIndiceLigne = 0; uiBoucleIndiceLigne < uiNBLignes; uiBoucleIndiceLigne++)
 	{
+		//Lecture de la ligne suivante et erreur si la ligne est absente
 		if (!fgets(pcLigne, 1024, fichier))
 		{
 			CException EXCErreur;
 			EXCErreur.EXCModifierValeur(FormatFichierInvalide);
 			throw EXCErreur;
 		}
+		//Vérification de la présence de ]
 		if (strncmp(pcLigne, "]", 1) == 0)
 		{
 			//ERREUR : Pas assez de lignes par rapport au NBLignes indiqué
@@ -246,23 +263,29 @@ CMatrice<double>& CLecteur::LECLireFichierMatrice()
 		double dElement = 0;
 		char* pcParcoursChaine = pcLigne;
 		unsigned int uiBoucleIndiceColonne = 0;
+		//Parcours des colonnes de chaque ligne
 		while (*pcParcoursChaine != '\n')
 		{
+			//Récupération de la valeur de l'élément
 			sscanf(pcParcoursChaine, "%lf", &dElement);
 			if (uiBoucleIndiceColonne < uiNBColonnes) {
+				//On ajoute l'élément à la matrice
 				MATMatrice->MATModifierElement(uiBoucleIndiceLigne, uiBoucleIndiceColonne, dElement);
 			}
 			if (strchr(pcParcoursChaine, ' ')) 
 			{
+				//On passe à l'élément suivant
 				pcParcoursChaine = strchr(pcParcoursChaine, ' ');
 				pcParcoursChaine++;
 			}
 			else
 			{
+				//On va directement à la fin de la chaine si pas d'élément suivant
 				pcParcoursChaine = strchr(pcParcoursChaine, '\n');
 			}
 			uiBoucleIndiceColonne++;
 		}
+		//On vérifie la concordance du nombre de colonnes
 		if (uiBoucleIndiceColonne != uiNBColonnes) 
 		{
 			//ERREUR : Différence entre le NBColonnes indiqué et le nombre réel de valeurs dans la ligne
@@ -271,18 +294,21 @@ CMatrice<double>& CLecteur::LECLireFichierMatrice()
 			throw EXCErreur;
 		}
 	}
+	//Lecture de la ligne suivante et erreur si la ligne est absente
 	if (!fgets(pcLigne, 1024, fichier))
 	{
 		CException EXCErreur;
 		EXCErreur.EXCModifierValeur(FormatFichierInvalide);
 		throw EXCErreur;
 	}
+	//Vérification de la présence de ]
 	if (strncmp(pcLigne, "]", 1) != 0)
 	{
 		CException EXCErreur;
 		EXCErreur.EXCModifierValeur(FormatFichierInvalide);
 		throw EXCErreur;
 	}
+	//Si le fichier à été ouvert, on le ferme
 	if (fichier)
 	{
 		fclose(fichier);
