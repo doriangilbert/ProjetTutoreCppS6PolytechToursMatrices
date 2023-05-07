@@ -1,6 +1,8 @@
 #ifndef CMatrice_h
 #define CMatrice_h
+
 #include "CException.h"
+
 #include <iostream>
 using namespace std;
 
@@ -39,12 +41,13 @@ template<class MTYPE> class CMatrice
 		***** Sortie :                                                     *****
 		***** Entraine : Le contructeur a initialisé un objet              *****
 		***** CMatrice<MTYPE> correspondant à une copie de l'objet         *****
-		***** MATParam                                                     *****
+		***** MATParam OU                                                  *****
+		***** Exception MatriceVide : On ne recopie pas une matrice vide   *****
 		***********************************************************************/
 		CMatrice<MTYPE>(CMatrice<MTYPE> &MATParam);
 
 		/***********************************************************************
-		***** CMATRICE<MTYPE> : Constructeur de comfort de CMatrice<MTYPE> *****
+		***** CMATRICE<MTYPE> : Constructeur de confort de CMatrice<MTYPE> *****
 		************************************************************************
 		***** Entrée : - uiNbLignes, entier non signé, nombre de lignes de *****
 		***** la matrice à créer                                           *****
@@ -53,7 +56,8 @@ template<class MTYPE> class CMatrice
 		***** Nécessite : uiNbLignes et uiNbColonnes entiers positifs      *****
 		***** Sortie :                                                     *****
 		***** Entraine : Le contructeur a initialisé un objet              *****
-		***** CMatrice<MTYPE> comportant uiNbLignes et uiNbColonnes        *****
+		***** CMatrice<MTYPE> comportant uiNbLignes et uiNbColonnes OU     *****
+		***** Exception MatriceVide : On ne crée pas une matrice vide      *****
 		***********************************************************************/
 		CMatrice<MTYPE>(unsigned int uiNbLignes, unsigned int uiNbColonnes);
 
@@ -64,8 +68,7 @@ template<class MTYPE> class CMatrice
 		***** Nécessite :                                       *****
 		***** Sortie :                                          *****
 		***** Entraine : Le destructeur a désalloué tous les    *****
-		***** éléments de la matrice en mettant leur valeur à   *****
-		***** NULL                                              *****
+		***** éléments de la matrice                            *****
 		************************************************************/
 		~CMatrice<MTYPE>();
 
@@ -96,7 +99,8 @@ template<class MTYPE> class CMatrice
 		***** - uiIndiceColonnes, entier non signé, indice de la colonne de l'élément à lire                                               *****
 		***** Nécessite : uiIndiceLignes et uiIndiceColonnes entiers positifs correspondants à des lignes et colonnes valides              *****
 		***** Sortie : type générique MTYPE, élément à la ligne uiIndiceLigne et à la colonne uiIndiceColonne                              *****
-		***** Entraine : MATLireElement(uiIndiceLigne, uiIndiceColonne) = élément à la ligne et à la colonne donnés en paramètres          *****
+		***** Entraine : MATLireElement(uiIndiceLigne, uiIndiceColonne) = élément à la ligne et à la colonne donnés en paramètres OU       *****
+		***** Exception DepassementLigneOuColonne : Accede a un element qui n'est pas dans la matrice                                      *****
 		***************************************************************************************************************************************/
 		MTYPE MATLireElement(unsigned int uiIndiceLigne, unsigned int uiIndiceColonne);
 
@@ -109,7 +113,8 @@ template<class MTYPE> class CMatrice
 		***** Nécessite : uiIndiceLignes et uiIndiceColonnes entiers positifs correspondants à des lignes et colonnes valides et valeur est du même *****
 		***** type que la matrice                                                                                                                   *****
 		***** Sortie :                                                                                                                              *****
-		***** Entraine : élément à la ligne uiIndiceLigne et à la colonne uiIndiceColonne = valeur                                                  *****
+		***** Entraine : élément à la ligne uiIndiceLigne et à la colonne uiIndiceColonne = valeur  OU                                              *****
+		***** Exception DepassementLigneOuColonne : Modifie un element qui n'est pas dans la matrice                                                *****
 		************************************************************************************************************************************************/
 		void MATModifierElement(unsigned int uiIndiceLigne, unsigned int uiIndiceColonne, MTYPE valeur);
 
@@ -120,31 +125,35 @@ template<class MTYPE> class CMatrice
 		***** Nécessite :                                                                                   *****
 		***** Sortie : objet CMatrice<MTYPE>, retourné par référence                                        *****
 		***** Entraine : Un objet CMatrice<MTYPE> à été initialisé correspondant à une copie de l'objet     *****
-		***** MATParam                                                                                      *****
+		***** MATParam   OU                                                                                 *****
+		***** Exception MatriceVide : On ne recopie pas une matrice vide                                    *****
 		********************************************************************************************************/
 		CMatrice<MTYPE>& operator=(CMatrice<MTYPE> &MATParam);
 
-		/**************************************************************************************************************************************************
-		***** operator* : Surcharge de l'opérateur * de CMatrice<MTYPE> prenant un entier à droite permettant de multiplier une matrice par un nombre *****
-		***************************************************************************************************************************************************
-		***** Entrée : iParam, entier, entier avec lequel multiplier la matrice                                                                       *****
-		***** Nécessite :                                                                                                                             *****
-		***** Sortie : objet CMatrice<MTYPE>, retourné par référence                                                                                  *****
-		***** Entraine : Un objet CMatrice<MTYPE> à été initialisé correspondant au résultat de la multiplication de la matrice avec l'entier en      *****
-		***** paramètre                                                                                                                               *****
-		**************************************************************************************************************************************************/
-		CMatrice<MTYPE>& operator*(int iParam);
+		/************************************************************************************************************************************************
+		***** operator* : Surcharge de l'opérateur * de CMatrice<MTYPE> prenant un réel à droite permettant de multiplier une matrice par un nombre *****
+		*************************************************************************************************************************************************
+		***** Entrée : dParam, réel, réel avec lequel multiplier la matrice                                                                         *****
+		***** Nécessite :                                                                                                                           *****
+		***** Sortie : objet CMatrice<MTYPE>, retourné par référence                                                                                *****
+		***** Entraine : Un objet CMatrice<MTYPE> à été initialisé correspondant au résultat de la multiplication de la matrice avec le réel en     *****
+		***** paramètre  OU                                                                                                                         *****
+		***** Exception MatriceVide : On ne peut pas multiplier une matrice vide                                                                    *****
+		************************************************************************************************************************************************/
+		CMatrice<MTYPE>& operator*(double dParam);
 
-		/***********************************************************************************************************************************************
-		***** operator/ : Surcharge de l'opérateur / de CMatrice<MTYPE> prenant un entier à droite permettant de diviser une matrice par un nombre *****
-		************************************************************************************************************************************************
-		***** Entrée : iParam, entier, entier avec lequel diviser la matrice                                                                       *****
-		***** Nécessite :                                                                                                                          *****
-		***** Sortie : objet CMatrice<MTYPE>, retourné par référence                                                                               *****
-		***** Entraine : Un objet CMatrice<MTYPE> à été initialisé correspondant au résultat de la division de la matrice avec l'entier en         *****
-		***** paramètre                                                                                                                            *****
-		***********************************************************************************************************************************************/
-		CMatrice<MTYPE>& operator/(int iParam);
+		/*********************************************************************************************************************************************
+		***** operator/ : Surcharge de l'opérateur / de CMatrice<MTYPE> prenant un réel à droite permettant de diviser une matrice par un nombre *****
+		**********************************************************************************************************************************************
+		***** Entrée : dParam, réel, réel avec lequel diviser la matrice                                                                         *****
+		***** Nécessite :                                                                                                                        *****
+		***** Sortie : objet CMatrice<MTYPE>, retourné par référence                                                                             *****
+		***** Entraine : Un objet CMatrice<MTYPE> à été initialisé correspondant au résultat de la division de la matrice avec le réel en        *****
+		***** paramètre  OU                                                                                                                      *****
+		***** Exception MatriceVide : On ne peut pas diviser une matrice vide                                                                    *****
+		***** Exception DivisionPar0 : On ne peut pas diviser par 0                                                                              *****
+		*********************************************************************************************************************************************/
+		CMatrice<MTYPE>& operator/(double dParam);
 
 		/*****************************************************************************
 		***** MATAfficher : Fonction permettant d'afficher une matrice à l'écran *****
@@ -153,7 +162,8 @@ template<class MTYPE> class CMatrice
 		***** Nécessite :                                                        *****
 		***** Sortie :                                                           *****
 		***** Entraine : La fonction à affiché le contenu de la matrice à        *****
-		***** l'écran                                                            *****
+		***** l'écran   OU                                                       *****
+		***** Exception MatriceVide: On ne peut pas afficher une matrice vide    *****
 		*****************************************************************************/
 		void MATAfficher();
 
@@ -164,7 +174,8 @@ template<class MTYPE> class CMatrice
 		***** Nécessite :                                                                 *****
 		***** Sortie : objet CMatrice<MTYPE>, retourné par référence                      *****
 		***** Entraine : Un objet CMatrice<MTYPE> à été initialisé correspondant à la     *****
-		***** transposée de la matrice (les lignes et les colonnes ont été échangées      *****
+		***** transposée de la matrice (les lignes et les colonnes ont été échangées) OU  *****
+		***** Exception MatriceVide : On ne peut pas transposer une matrice vide          *****
 		**************************************************************************************/
 		CMatrice<MTYPE>& MATTransposer();
 
@@ -174,8 +185,9 @@ template<class MTYPE> class CMatrice
 		***** Entrée : MATParam, un objet de type CMatrice<MTYPE>                                                                           *****
 		***** Nécessite : La matrice appelante est de la même taille que MATParam                                                           *****
 		***** Sortie : objet CMatrice<MTYPE>, retourné par référence                                                                        *****
-		***** Entraine : Un objet CMatrice<MTYPE> à été initialisé correspondant au résultat de la addition de la matrice avec la matrice   *****
-		***** en paramètre                                                                                                                  *****
+		***** Entraine : Un objet CMatrice<MTYPE> à été initialisé correspondant au résultat de l' addition de la matrice avec la matrice   *****
+		***** en paramètre   OU                                                                                                             *****
+		***** Exception TailleNonCorrespondantes :  La Matrice rentrée en parametre n'est pas de la même taille que l'autre                 *****
 		****************************************************************************************************************************************/
 		CMatrice<MTYPE>& operator+(CMatrice<MTYPE> &MATParam);
 
@@ -187,6 +199,8 @@ template<class MTYPE> class CMatrice
 		***** Sortie : objet CMatrice<MTYPE>, retourné par référence                                                                        *****
 		***** Entraine : Un objet CMatrice<MTYPE> à été initialisé correspondant au résultat de la soustraction de la matrice avec la       *****
 		***** matrice en paramètre                                                                                                          *****
+		***** Exception TailleNonCorrespondantes :  La Matrice rentrée en parametre n'est pas de la même taille que l'autre  OU             *****
+		***** Exception MatriceVide :  Une des matrices est vide                                                                            *****
 		****************************************************************************************************************************************/
 		CMatrice<MTYPE>& operator-(CMatrice<MTYPE> &MATParam);
 
@@ -198,6 +212,9 @@ template<class MTYPE> class CMatrice
 		***** Sortie : objet CMatrice<MTYPE>, retourné par référence                                                                              *****
 		***** Entraine : Un objet CMatrice<MTYPE> à été initialisé correspondant au résultat du produit de la matrice avec la matrice en          *****
 		***** paramètre                                                                                                                           *****
+		***** Exception TailleNonCorrespondantes :  La Matrice rentrée en parametre ne possede pas le même nombre de colonne que le nombre de     *****
+		***** lignes de la premiere OU                                                                                                            *****
+		***** Exception MatriceVide :  Une des matrices est vide                                                                                  *****
 		**********************************************************************************************************************************************/
 		CMatrice<MTYPE>& operator*(CMatrice<MTYPE> &MATParam); //Produit terme à terme ou produit matriciel
 

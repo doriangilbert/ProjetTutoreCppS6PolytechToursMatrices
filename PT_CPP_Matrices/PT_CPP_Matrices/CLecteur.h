@@ -16,11 +16,11 @@ using namespace std;
 #define FormatFichierInvalide 7
 #define TypeMatriceFichierInvalide 8
 
-
+//CLecteur est une classe utilisée pour la lecture d'un fichier formatté afin d'en récupérer une matrice de type CMatrice
 class CLecteur 
 {
 	private:
-		char* pcLECNomFichier;
+		char* pcLECNomFichier; //Chaine de caractères, Nom du fichier à lire
 
 	public:
 		/**/
