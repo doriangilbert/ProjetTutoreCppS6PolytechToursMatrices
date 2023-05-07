@@ -97,11 +97,10 @@ template<class MTYPE> CMatrice<MTYPE>::CMatrice(unsigned int uiNbLignes, unsigne
 ************************************************************/
 template<class MTYPE> CMatrice<MTYPE>::~CMatrice()
 {
-	for (unsigned int uiBoucleIndiceLigne = 0; uiBoucleIndiceLigne < uiMATNbLignes; uiBoucleIndiceLigne++) {
-		for (unsigned int uiBoucleIndiceColonne = 0; uiBoucleIndiceColonne < uiMATNbColonnes; uiBoucleIndiceColonne++) {
-			pMATMatrice[uiBoucleIndiceLigne][uiBoucleIndiceColonne] = NULL;
-		}
+	for (unsigned int uiBoucleLignes = 0; uiBoucleLignes < uiMATNbLignes;uiBoucleLignes++) {
+		delete[] pMATMatrice[uiBoucleLignes];
 	}
+	delete[] pMATMatrice;
 };
 
 /*************************************************************************

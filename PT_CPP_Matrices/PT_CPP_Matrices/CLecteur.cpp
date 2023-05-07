@@ -18,7 +18,7 @@ CLecteur::CLecteur(char* pcNomFichier)
 
 CLecteur::~CLecteur()
 {
-	delete[] pcLECNomFichier;
+	pcLECNomFichier = NULL;
 }
 
 char* CLecteur::LECLireNomFichier()
