@@ -2,6 +2,7 @@
 #define CLecteur_h
 
 #include "CMatrice.h"
+#include "CException.h"
 
 #include <cstdio>
 #include <cstring>
@@ -10,6 +11,11 @@ using namespace std;
 #pragma warning(disable : 4996) //Ligne utilisée pour éviter l'erreur Visual Studio : C4996 This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS
 
 #define NULL 0;
+#define NomFichierManquant 5
+#define EchecOuvertureFichier 6
+#define FormatFichierInvalide 7
+#define TypeMatriceFichierInvalide 8
+
 
 class CLecteur 
 {
@@ -28,7 +34,7 @@ class CLecteur
 		/**/
 		char* LECLireNomFichier();
 		/**/
-		void LECModifierValeur(char* pcNomFichier);
+		void LECModifierNomFichier(char* pcNomFichier);
 		/**/
 		CLecteur& operator=(CLecteur& LECParam);
 		/**/

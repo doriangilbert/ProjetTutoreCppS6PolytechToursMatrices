@@ -26,8 +26,9 @@ char* CLecteur::LECLireNomFichier()
 	return pcLECNomFichier;
 }
 
-void CLecteur::LECModifierValeur(char* pcNomFichier)
+void CLecteur::LECModifierNomFichier(char* pcNomFichier)
 {
+	pcLECNomFichier = new char[strlen(pcNomFichier)];
 	strcpy(pcLECNomFichier, pcNomFichier);
 }
 
@@ -39,46 +40,65 @@ CLecteur& CLecteur::operator=(CLecteur& LECParam)
 
 CMatrice<double>& CLecteur::LECLireFichierMatrice()
 {
-	//TODO : Vérifier qu'il y a un nom de fichier
+	if (!pcLECNomFichier) 
+	{
+		CException EXCErreur;
+		EXCErreur.EXCModifierValeur(NomFichierManquant);
+		throw EXCErreur;
+	}
 	FILE* fichier = fopen(pcLECNomFichier, "r");
 	if (!fichier) 
 	{
-		//TODO : Gérer erreur ouverture
+		CException EXCErreur;
+		EXCErreur.EXCModifierValeur(EchecOuvertureFichier);
+		throw EXCErreur;
 	}
 	char pcLigne[1024] = "";
 	if (!fgets(pcLigne, 1024, fichier))
 	{
-		//TODO : ERREUR Lecture
+		CException EXCErreur;
+		EXCErreur.EXCModifierValeur(FormatFichierInvalide);
+		throw EXCErreur;
 	}
 	char pcTypeMatrice[1024] = "";
 	if (strncmp(pcLigne, "TypeMatrice=", 12) != 0) 
 	{
-		//TODO : ERREUR format
+		CException EXCErreur;
+		EXCErreur.EXCModifierValeur(FormatFichierInvalide);
+		throw EXCErreur;
 	}
 	else 
 	{
 		sscanf(pcLigne, "TypeMatrice=%s", pcTypeMatrice); //Pour les sscanf : vérifier si on a bien eu le bon type
 		if (strcmp(pcTypeMatrice, "double") != 0)
 		{
-			//TODO : ERREUR type non double
+			CException EXCErreur;
+			EXCErreur.EXCModifierValeur(TypeMatriceFichierInvalide);
+			throw EXCErreur;
 		}
 	}
 	if (!fgets(pcLigne, 1024, fichier))
 	{
-		//TODO : ERREUR Lecture
+		CException EXCErreur;
+		EXCErreur.EXCModifierValeur(FormatFichierInvalide);
+		throw EXCErreur;
 	}
 	int iNBLignes = 0;
 	unsigned int uiNBLignes = 0;
 	if (strncmp(pcLigne, "NBLignes=", 9) != 0)
 	{
-		//TODO : ERREUR format
+		CException EXCErreur;
+		EXCErreur.EXCModifierValeur(FormatFichierInvalide);
+		throw EXCErreur;
 	}
 	else
 	{
 		sscanf(pcLigne, "NBLignes=%d", &iNBLignes);
 		if (iNBLignes < 0) 
 		{
-			//TODO : ERREUR valeur négative
+			CException EXCErreur;
+			EXCErreur.EXCModifierValeur(FormatFichierInvalide);
+			throw EXCErreur;
 		}
 		else 
 		{
@@ -87,20 +107,26 @@ CMatrice<double>& CLecteur::LECLireFichierMatrice()
 	}
 	if (!fgets(pcLigne, 1024, fichier))
 	{
-		//TODO : ERREUR Lecture
+		CException EXCErreur;
+		EXCErreur.EXCModifierValeur(FormatFichierInvalide);
+		throw EXCErreur;
 	}
 	int iNBColonnes = 0;
 	unsigned int uiNBColonnes = 0;
 	if (strncmp(pcLigne, "NBColonnes=", 11) != 0)
 	{
-		//TODO : ERREUR format
+		CException EXCErreur;
+		EXCErreur.EXCModifierValeur(FormatFichierInvalide);
+		throw EXCErreur;
 	}
 	else
 	{
 		sscanf(pcLigne, "NBColonnes=%d", &iNBColonnes);
 		if (iNBColonnes < 0) 
 		{
-			//TODO : ERREUR valeur négative
+			CException EXCErreur;
+			EXCErreur.EXCModifierValeur(FormatFichierInvalide);
+			throw EXCErreur;
 		}
 		else {
 			uiNBColonnes = iNBColonnes;
@@ -109,21 +135,30 @@ CMatrice<double>& CLecteur::LECLireFichierMatrice()
 	CMatrice<double>* MATMatrice = new CMatrice<double>(uiNBLignes, uiNBColonnes);
 	if (!fgets(pcLigne, 1024, fichier))
 	{
-		//TODO : ERREUR Lecture
+		CException EXCErreur;
+		EXCErreur.EXCModifierValeur(FormatFichierInvalide);
+		throw EXCErreur;
 	}
 	if (strncmp(pcLigne, "Matrice=[", 9) != 0)
 	{
-		//TODO : ERREUR format
+		CException EXCErreur;
+		EXCErreur.EXCModifierValeur(FormatFichierInvalide);
+		throw EXCErreur;
 	}
 	for (unsigned int uiBoucleIndiceLigne = 0; uiBoucleIndiceLigne < uiNBLignes; uiBoucleIndiceLigne++)
 	{
 		if (!fgets(pcLigne, 1024, fichier))
 		{
-			//TODO : ERREUR Lecture
+			CException EXCErreur;
+			EXCErreur.EXCModifierValeur(FormatFichierInvalide);
+			throw EXCErreur;
 		}
 		if (strncmp(pcLigne, "]", 1) == 0)
 		{
-			//TODO : ERREUR format (car pas assez de lignes)
+			//ERREUR : Pas assez de lignes par rapport au NBLignes indiqué
+			CException EXCErreur;
+			EXCErreur.EXCModifierValeur(FormatFichierInvalide);
+			throw EXCErreur;
 		}
 		double dElement = 0;
 		char* pcParcoursChaine = pcLigne;
@@ -147,16 +182,27 @@ CMatrice<double>& CLecteur::LECLireFichierMatrice()
 		}
 		if (uiBoucleIndiceColonne != uiNBColonnes) 
 		{
-			//TODO : ERREUR format (car pas assez ou trop de valeurs dans la ligne)
+			//ERREUR : Différence entre le NBColonnes indiqué et le nombre réel de valeurs dans la ligne
+			CException EXCErreur;
+			EXCErreur.EXCModifierValeur(FormatFichierInvalide);
+			throw EXCErreur;
 		}
 	}
 	if (!fgets(pcLigne, 1024, fichier))
 	{
-		//TODO : ERREUR Lecture
+		CException EXCErreur;
+		EXCErreur.EXCModifierValeur(FormatFichierInvalide);
+		throw EXCErreur;
 	}
 	if (strncmp(pcLigne, "]", 1) != 0)
 	{
-		//TODO : ERREUR format
+		CException EXCErreur;
+		EXCErreur.EXCModifierValeur(FormatFichierInvalide);
+		throw EXCErreur;
+	}
+	if (fichier)
+	{
+		fclose(fichier);
 	}
 	return *MATMatrice;
 }
