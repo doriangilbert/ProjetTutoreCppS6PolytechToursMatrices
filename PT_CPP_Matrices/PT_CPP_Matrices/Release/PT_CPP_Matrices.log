@@ -12,8 +12,8 @@ d:\users\dodog\documents\projets visual studio\projettutorecpps6polytechtoursmat
   d:\users\dodog\documents\projets visual studio\projettutorecpps6polytechtoursmatrices\pt_cpp_matrices\pt_cpp_matrices\pt_cpp_matrices.cpp(76): note: voir la référence à l'instanciation de la fonction modèle 'CMatrice<double> &CMatrice<double>::operator *(CMatrice<double> &)' en cours de compilation
   d:\users\dodog\documents\projets visual studio\projettutorecpps6polytechtoursmatrices\pt_cpp_matrices\pt_cpp_matrices\pt_cpp_matrices.cpp(15): note: voir la référence à l'instanciation de classe modèle 'CMatrice<double>' en cours de compilation
   Génération de code en cours
-  12 of 40 functions (30.0%) were compiled, the rest were copied from previous compilation.
-    2 functions were new in current compilation
+  1 of 40 functions ( 2.5%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
     0 functions had inline decision re-evaluated but remain unchanged
   Fin de la génération du code
   PT_CPP_Matrices.vcxproj -> D:\Users\dodog\Documents\Projets Visual Studio\ProjetTutoreCppS6PolytechToursMatrices\PT_CPP_Matrices\Release\PT_CPP_Matrices.exe

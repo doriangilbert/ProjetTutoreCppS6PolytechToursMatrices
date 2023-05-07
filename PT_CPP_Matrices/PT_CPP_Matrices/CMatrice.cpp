@@ -104,7 +104,7 @@ template<class MTYPE> CMatrice<MTYPE>::~CMatrice()
 };
 
 /*************************************************************************
-***** MATLireNbLignes : Accesseur direct en lecture de uiMATNbLignes *****
+***** MATLIRENBLIGNES : Accesseur direct en lecture de uiMATNbLignes *****
 **************************************************************************
 ***** Entrée :                                                       *****
 ***** Nécessite :                                                    *****
@@ -117,7 +117,7 @@ template<class MTYPE> int CMatrice<MTYPE>::MATLireNbLignes()
 };
 
 /*****************************************************************************
-***** MATLireNbColonnes : Accesseur direct en lecture de uiMATNbColonnes *****
+***** MATLIRENBCOLONNES : Accesseur direct en lecture de uiMATNbColonnes *****
 ******************************************************************************
 ***** Entrée :                                                           *****
 ***** Nécessite :                                                        *****
@@ -130,7 +130,7 @@ template<class MTYPE> int CMatrice<MTYPE>::MATLireNbColonnes()
 };
 
 /***************************************************************************************************************************************
-***** MATLireElement : Fonction permettant de lire un élément à une position donnée (accesseur indirect en lecture de pMATMatrice) *****
+***** MATLIREELEMENT : Fonction permettant de lire un élément à une position donnée (accesseur indirect en lecture de pMATMatrice) *****
 ****************************************************************************************************************************************
 ***** Entrée : - uiIndiceLignes, entier non signé, indice de la ligne de l'élément à lire                                          *****
 ***** - uiIndiceColonnes, entier non signé, indice de la colonne de l'élément à lire                                               *****
@@ -151,7 +151,7 @@ template<class MTYPE> MTYPE CMatrice<MTYPE>::MATLireElement(unsigned int uiIndic
 };
 
 /************************************************************************************************************************************************
-***** MATModifierElement : Fonction permettant de modifier un élément à une position donnée (accesseur indirect en écriture de pMATMatrice) *****
+***** MATMODIFIERELEMENT : Fonction permettant de modifier un élément à une position donnée (accesseur indirect en écriture de pMATMatrice) *****
 *************************************************************************************************************************************************
 ***** Entrée : - uiIndiceLignes, entier non signé, indice de la ligne de l'élément à modifier                                               *****
 ***** - uiIndiceColonnes, entier non signé, indice de la colonne de l'élément à modifier                                                    *****
@@ -174,7 +174,7 @@ template<class MTYPE> void CMatrice<MTYPE>::MATModifierElement(unsigned int uiIn
 };
 
 /********************************************************************************************************
-***** operator= : Surcharge de l'opérateur = de CMatrice<MTYPE> prenant un CMatrice<MTYPE> à droite *****
+***** OPERATOR= : Surcharge de l'opérateur = de CMatrice<MTYPE> prenant un CMatrice<MTYPE> à droite *****
 *********************************************************************************************************
 ***** Entrée : MATParam, un objet de type CMatrice<MTYPE>                                           *****
 ***** Nécessite :                                                                                   *****
@@ -218,7 +218,7 @@ template<class MTYPE> CMatrice<MTYPE>& CMatrice<MTYPE>::operator=(CMatrice<MTYPE
 };
 
 /************************************************************************************************************************************************
-***** operator* : Surcharge de l'opérateur * de CMatrice<MTYPE> prenant un réel à droite permettant de multiplier une matrice par un nombre *****
+***** OPERATOR* : Surcharge de l'opérateur * de CMatrice<MTYPE> prenant un réel à droite permettant de multiplier une matrice par un nombre *****
 *************************************************************************************************************************************************
 ***** Entrée : dParam, réel, réel avec lequel multiplier la matrice                                                                         *****
 ***** Nécessite :                                                                                                                           *****
@@ -246,7 +246,7 @@ template<class MTYPE> CMatrice<MTYPE>& CMatrice<MTYPE>::operator*(double dParam)
 };
 
 /*********************************************************************************************************************************************
-***** operator/ : Surcharge de l'opérateur / de CMatrice<MTYPE> prenant un réel à droite permettant de diviser une matrice par un nombre *****
+***** OPERATOR/ : Surcharge de l'opérateur / de CMatrice<MTYPE> prenant un réel à droite permettant de diviser une matrice par un nombre *****
 **********************************************************************************************************************************************
 ***** Entrée : dParam, réel, réel avec lequel diviser la matrice                                                                         *****
 ***** Nécessite :                                                                                                                        *****
@@ -281,7 +281,7 @@ template<class MTYPE> CMatrice<MTYPE>& CMatrice<MTYPE>::operator/(double dParam)
 };
 
 /*****************************************************************************
-***** MATAfficher : Fonction permettant d'afficher une matrice à l'écran *****
+***** MATAFFICHER : Fonction permettant d'afficher une matrice à l'écran *****
 ******************************************************************************
 ***** Entrée :                                                           *****
 ***** Nécessite :                                                        *****
@@ -307,7 +307,7 @@ template<class MTYPE> void CMatrice<MTYPE>::MATAfficher()
 }
 
 /**************************************************************************************
-***** MATTransposer : Fonction permettant de calculer la transposée d'une matrice *****
+***** MATTRANSPOSER : Fonction permettant de calculer la transposée d'une matrice *****
 ***************************************************************************************
 ***** Entrée :                                                                    *****
 ***** Nécessite :                                                                 *****
@@ -336,7 +336,7 @@ template<class MTYPE> CMatrice<MTYPE>& CMatrice<MTYPE>::MATTransposer()
 };
 
 /****************************************************************************************************************************************
-***** operator+ : Surcharge de l'opérateur + de CMatrice<MTYPE> prenant une matrice à droite permettant d'additionner deux matrices *****
+***** OPERATOR+ : Surcharge de l'opérateur + de CMatrice<MTYPE> prenant une matrice à droite permettant d'additionner deux matrices *****
 *****************************************************************************************************************************************
 ***** Entrée : MATParam, un objet de type CMatrice<MTYPE>                                                                           *****
 ***** Nécessite : La matrice appelante est de la même taille que MATParam                                                           *****
@@ -365,7 +365,7 @@ template<class MTYPE> CMatrice<MTYPE>& CMatrice<MTYPE>::operator+(CMatrice<MTYPE
 };
 
 /****************************************************************************************************************************************
-***** operator- : Surcharge de l'opérateur - de CMatrice<MTYPE> prenant une matrice à droite permettant de soustraire deux matrices *****
+***** OPERATOR- : Surcharge de l'opérateur - de CMatrice<MTYPE> prenant une matrice à droite permettant de soustraire deux matrices *****
 *****************************************************************************************************************************************
 ***** Entrée : MATParam, un objet de type CMatrice<MTYPE>                                                                           *****
 ***** Nécessite : La matrice appelante est de la même taille que MATParam                                                           *****
@@ -401,7 +401,7 @@ template<class MTYPE> CMatrice<MTYPE>& CMatrice<MTYPE>::operator-(CMatrice<MTYPE
 }
 
 /**********************************************************************************************************************************************
-***** operator* : Surcharge de l'opérateur * de CMatrice<MTYPE> prenant une matrice à droite permettant de faire le produit deux matrices *****
+***** OPERATOR* : Surcharge de l'opérateur * de CMatrice<MTYPE> prenant une matrice à droite permettant de faire le produit deux matrices *****
 ***********************************************************************************************************************************************
 ***** Entrée : MATParam, un objet de type CMatrice<MTYPE>                                                                                 *****
 ***** Nécessite : La matrice appelante est de la même taille que MATParam                                                                 *****
@@ -440,7 +440,7 @@ template<class MTYPE> CMatrice<MTYPE>& CMatrice<MTYPE>::operator*(CMatrice<MTYPE
 }
 
 /*****************************************************************************************************************************************************
-***** operator* : Surcharge de l'opérateur * prenant un réel à gauche et une matrice à droite permettant de multiplier une matrice par un nombre *****
+***** OPERATOR* : Surcharge de l'opérateur * prenant un réel à gauche et une matrice à droite permettant de multiplier une matrice par un nombre *****
 ******************************************************************************************************************************************************
 ***** Entrée : - dParam, réel, réel avec lequel multiplier la matrice                                                                            *****
 ***** - MATParam, un objet de type CMatrice<MTYPE>                                                                                               *****
@@ -472,7 +472,7 @@ template<class MTYPE> CMatrice<MTYPE>& operator*(double dParam, CMatrice<MTYPE> 
 }
 
 /**************************************************************************************************************************************************
-***** operator/ : Surcharge de l'opérateur / prenant un réel à gauche et une matrice à droite permettant de diviser une matrice par un nombre *****
+***** OPERATOR/ : Surcharge de l'opérateur / prenant un réel à gauche et une matrice à droite permettant de diviser une matrice par un nombre *****
 ***************************************************************************************************************************************************
 ***** Entrée : - dParam, réel, réel avec lequel diviser la matrice                                                                            *****
 ***** - MATParam, un objet de type CMatrice<MTYPE>                                                                                            *****
