@@ -6,7 +6,7 @@ Projet de programmation d'une librairie de classes et de fonctions permettant de
 ### Contenu
 Le projet est composé de 3 éléments : 
 - **CException** : une classe permettant de gérer les
-exceptions qui surviennent dans le cadre des situation anormales mais prévisibles de fonctionnement
+exceptions qui surviennent dans le cadre des situations anormales mais prévisibles de fonctionnement
 - **CMatrice\<MTYPE\>** : un patron (template) de classe permettant de manipuler des matrices contenant des éléments de type quelconque, type quelconque représenté par le type générique MTYPE
 - **CLecteur** : une classe permettant de lire un fichier et de le manipuler, en particulier on va l’utiliser pour créer une Matrice de double à partir d’un fichier donné en paramètre de ligne de commande
 
@@ -70,7 +70,7 @@ contraire, les calculs pouvant être effectués le seront et vous obtiendrez une
 pour les autres.
 
 ### Liste des codes erreurs
-Notez que dans le cas où un code erreur serait indiqué sans précision, vous pouvez
+Notez que dans le cas où un code erreur serait indiqué sans précisions, vous pouvez
 vous référer au tableau récapitulatif suivant :
 
 | Code | Nom | Classe |
