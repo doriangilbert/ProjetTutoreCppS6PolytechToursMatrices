@@ -34,6 +34,7 @@ template<class MTYPE> CMatrice<MTYPE>::CMatrice()
 ***********************************************************************/
 template<class MTYPE> CMatrice<MTYPE>::CMatrice(CMatrice<MTYPE>& MATParam)
 {
+	//On teste si la matrice est vide 
 	if (MATParam.MATLireNbColonnes() == 0 || MATParam.MATLireNbLignes() == 0) {
 		CException EXCErreur;
 		EXCErreur.EXCModifierValeur(MatriceVide);
@@ -67,6 +68,7 @@ template<class MTYPE> CMatrice<MTYPE>::CMatrice(CMatrice<MTYPE>& MATParam)
 ***********************************************************************/
 template<class MTYPE> CMatrice<MTYPE>::CMatrice(unsigned int uiNbLignes, unsigned int uiNbColonnes)
 {
+	//On teste si la matrice est vide
 	if (uiNbLignes == 0 || uiNbColonnes == 0) {
 		CException EXCErreur;
 		EXCErreur.EXCModifierValeur(MatriceVide);
@@ -141,6 +143,7 @@ template<class MTYPE> int CMatrice<MTYPE>::MATLireNbColonnes()
 ***************************************************************************************************************************************/
 template<class MTYPE> MTYPE CMatrice<MTYPE>::MATLireElement(unsigned int uiIndiceLigne, unsigned int uiIndiceColonne)
 {
+	//On teste si on ne depasse pas la taille mémoire de la matrice
 	if (uiIndiceLigne >= uiMATNbLignes || uiIndiceColonne >= uiMATNbColonnes) {
 		CException EXCErreur;
 		EXCErreur.EXCModifierValeur(DepassementLigneOuColonne);
@@ -163,6 +166,7 @@ template<class MTYPE> MTYPE CMatrice<MTYPE>::MATLireElement(unsigned int uiIndic
 ************************************************************************************************************************************************/
 template<class MTYPE> void CMatrice<MTYPE>::MATModifierElement(unsigned int uiIndiceLigne, unsigned int uiIndiceColonne, MTYPE valeur)
 {
+	//On teste si on ne depasse pas la taille mémoire de la matrice
 	if (uiIndiceLigne >= uiMATNbLignes || uiIndiceColonne >= uiMATNbColonnes) {
 		CException EXCErreur;
 		EXCErreur.EXCModifierValeur(DepassementLigneOuColonne);
@@ -183,12 +187,14 @@ template<class MTYPE> void CMatrice<MTYPE>::MATModifierElement(unsigned int uiIn
 ********************************************************************************************************/
 template<class MTYPE> CMatrice<MTYPE>& CMatrice<MTYPE>::operator=(CMatrice<MTYPE>& MATParam) 
 {
+	//On teste si la matrice est vide
 	if (MATParam.MATLireNbColonnes() == 0 || MATParam.MATLireNbLignes() == 0) {
 		CException EXCErreur;
 		EXCErreur.EXCModifierValeur(MatriceVide);
 		throw EXCErreur;
 	}
 
+	//si la matrice n'est pas vide on vide la matrice avant de recopie l'autre matrice
 	if (pMATMatrice != nullptr) {
 		for (unsigned int uiBoucleIndiceLigne = 0; uiBoucleIndiceLigne < uiMATNbLignes; uiBoucleIndiceLigne++) {
 			delete[] pMATMatrice[uiBoucleIndiceLigne];
@@ -225,6 +231,7 @@ template<class MTYPE> CMatrice<MTYPE>& CMatrice<MTYPE>::operator=(CMatrice<MTYPE
 **************************************************************************************************************************************************/
 template<class MTYPE> CMatrice<MTYPE>& CMatrice<MTYPE>::operator*(int iParam) 
 {
+	//On teste si la matrice est vide
 	if (uiMATNbColonnes == 0 || uiMATNbLignes == 0) {
 		CException EXCErreur;
 		EXCErreur.EXCModifierValeur(MatriceVide);
@@ -253,6 +260,7 @@ template<class MTYPE> CMatrice<MTYPE>& CMatrice<MTYPE>::operator*(int iParam)
 ***********************************************************************************************************************************************/
 template<class MTYPE> CMatrice<MTYPE>& CMatrice<MTYPE>::operator/(int iParam)
 {
+	//On teste si l'entier est 0 car on ne peut pas diviser par 0 
 	if (iParam == 0) {
 		CException EXCErreur;
 		EXCErreur.EXCModifierValeur(DivisionPar0);
@@ -285,6 +293,7 @@ template<class MTYPE> CMatrice<MTYPE>& CMatrice<MTYPE>::operator/(int iParam)
 ***** Exception MatriceVide: On ne peut pas afficher une matrice vide    *****
 *****************************************************************************/
 template<class MTYPE> void CMatrice<MTYPE>::MATAfficher() {
+	//On teste si la matrice est vide
 	if (uiMATNbColonnes == 0 || uiMATNbLignes == 0) {
 		CException EXCErreur;
 		EXCErreur.EXCModifierValeur(MatriceVide);
@@ -309,7 +318,8 @@ template<class MTYPE> void CMatrice<MTYPE>::MATAfficher() {
 ***** Exception MatriceVide : On ne peut pas transposer une matrice vide          *****
 **************************************************************************************/
 template<class MTYPE> CMatrice<MTYPE>& CMatrice<MTYPE>::MATTransposer()
-{
+{	
+	//On teste si la matrice est vide
 	if (uiMATNbColonnes == 0 || uiMATNbLignes == 0) {
 		CException EXCErreur;
 		EXCErreur.EXCModifierValeur(MatriceVide);
@@ -338,6 +348,7 @@ template<class MTYPE> CMatrice<MTYPE>& CMatrice<MTYPE>::MATTransposer()
 ****************************************************************************************************************************************/
 template<class MTYPE> CMatrice<MTYPE>& CMatrice<MTYPE>::operator+(CMatrice<MTYPE> &MATParam) {
 
+	//On teste si les matrices sont de même taille
 	if (uiMATNbColonnes != MATParam.MATLireNbColonnes() || uiMATNbLignes != MATParam.MATLireNbLignes()) {
 		CException EXCErreur;
 		EXCErreur.EXCModifierValeur(TailleNonCorrespondantes);
@@ -367,6 +378,7 @@ template<class MTYPE> CMatrice<MTYPE>& CMatrice<MTYPE>::operator+(CMatrice<MTYPE
 ****************************************************************************************************************************************/
 template<class MTYPE> CMatrice<MTYPE>& CMatrice<MTYPE>::operator-(CMatrice<MTYPE> &MATParam) {
 	
+	//On teste si une des matrice est vide
 	if (uiMATNbColonnes == 0 || uiMATNbLignes == 0 || MATParam.MATLireNbColonnes() == 0 || MATParam.MATLireNbLignes() == 0) {
 		CException EXCErreur;
 		EXCErreur.EXCModifierValeur(MatriceVide);
@@ -403,6 +415,7 @@ template<class MTYPE> CMatrice<MTYPE>& CMatrice<MTYPE>::operator-(CMatrice<MTYPE
 **********************************************************************************************************************************************/
 template<class MTYPE> CMatrice<MTYPE>& CMatrice<MTYPE>::operator*(CMatrice<MTYPE> &MATParam) {
 
+	//On teste si une des matrice est vide
 	if (uiMATNbColonnes == 0 || uiMATNbLignes == 0 || MATParam.MATLireNbColonnes() == 0 || MATParam.MATLireNbLignes() == 0) {
 		CException EXCErreur;
 		EXCErreur.EXCModifierValeur(MatriceVide);
@@ -443,6 +456,7 @@ template<class MTYPE> CMatrice<MTYPE>& operator*(int iParam, CMatrice<MTYPE> MAT
 	uiMATNbLignes = MATParam.MATLireNbLignes();
 	uiMATNbColonnes = MATParam.MATLireNbColonnes();
 	
+	//On teste si la matrice est vide
 	if (uiMATNbColonnes == 0 || uiMATNbLignes == 0) {
 		CException EXCErreur;
 		EXCErreur.EXCModifierValeur(MatriceVide);
@@ -475,6 +489,7 @@ template<class MTYPE> CMatrice<MTYPE>& operator/(int iParam, CMatrice<MTYPE> MAT
 	uiMATNbLignes = MATParam.MATLireNbLignes();
 	uiMATNbColonnes = MATParam.MATLireNbColonnes();
 
+	//On teste si l'entier rentrée en parametre est egale a 0 car on ne peut pas diviser par 0
 	if (iParam == 0) {
 		CException EXCErreur;
 		EXCErreur.EXCModifierValeur(DivisionPar0);

@@ -9,14 +9,15 @@
 
 int main(int argc,char* argv[])
 {
-	//TODO : Vérifier la valeur de argc (argc > 1) et lire argv si la condition est remplie (y'a toujours le nom du fichier enfaite)
 
 	int iNombreParametres = (argc - 1);
 	cout << iNombreParametres << "\n";
+	//On voit si on a bien des parametres en entrée
 	if (iNombreParametres > 0) {
 		CMatrice<double>* LISMATListeMatrice1 = new CMatrice<double>[iNombreParametres];
 		CLecteur LECLecteur;
 		try {
+			//Boucle pour remplir la liste de Matrice
 			for (int iBoucle = 1; iBoucle < argc; iBoucle++) {
 				LECLecteur.LECModifierNomFichier(argv[iBoucle]);
 				CMatrice<double> MATMatrice = LECLecteur.LECLireFichierMatrice();
@@ -26,13 +27,16 @@ int main(int argc,char* argv[])
 			}
 			cout << "Entrer un entier \n";
 			int c;
+			// Si c'est bien un entier on peut faire la multiplication Mk*c ou Mk/c
 			if (cin >> c) {
 				cout << "C'est un entier: " << c << endl;
 				try {
+					//Resultat des Mk *c
 					for (int uiBoucleIndiceListeMatrice = 0; uiBoucleIndiceListeMatrice < iNombreParametres; uiBoucleIndiceListeMatrice++) {
 						cout << "Resultat M" << uiBoucleIndiceListeMatrice + 1 << " * c \n";
 						(LISMATListeMatrice1[uiBoucleIndiceListeMatrice] * c).MATAfficher();
 					}
+					//Resultat des Mk / c
 					for (int uiBoucleIndiceListeMatrice = 0; uiBoucleIndiceListeMatrice < iNombreParametres; uiBoucleIndiceListeMatrice++) {
 						cout << "Resultat M" << uiBoucleIndiceListeMatrice + 1 << " / c \n";
 						(LISMATListeMatrice1[uiBoucleIndiceListeMatrice] / c).MATAfficher();
@@ -44,6 +48,7 @@ int main(int argc,char* argv[])
 
 			}
 			else cout << "Ce n'est pas un entier" << endl;
+			// On calcule la somme des Mk et la somme des M1+M2-M3....
 			cout << "Resultat MSomme\n";
 			try {
 				CMatrice<double> MSomme(LISMATListeMatrice1[0]);
@@ -79,7 +84,7 @@ int main(int argc,char* argv[])
 			}
 		}
 		catch (CException EXCErreur) {
-			cout << EXCErreur.EXCLireValeur();
+			cout << "Code d'erreur"<<EXCErreur.EXCLireValeur()<< endl;
 		}
 		delete[] LISMATListeMatrice1;
 	}
